@@ -270,20 +270,20 @@
           </button>
         </div>
         <!-- Messages Area -->
-        <div id="messages" class="flex-1 overflow-y-auto px-4 md:px-8 space-y-6 md:space-y-8 py-6">
+        <div id="messages" class="flex-1 overflow-y-auto px-3 md:px-8 space-y-4 md:space-y-8 py-4 md:py-6">
           <!-- Coach Message -->
-          <div class="flex gap-4 max-w-2xl">
+          <div class="flex gap-2 md:gap-4 max-w-2xl">
             <div
-              class="w-8 h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center"
+              class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center"
             >
               <span
-                class="material-symbols-outlined text-primary-container text-xl"
+                class="material-symbols-outlined text-primary-container text-lg md:text-xl"
                 data-icon="smart_toy"
                 >smart_toy</span
               >
             </div>
-            <div class="bg-surface-container p-6 rounded-xl rounded-tl-none">
-              <p class="text-on-surface leading-relaxed">
+            <div class="bg-surface-container p-3 md:p-6 rounded-xl rounded-tl-none">
+              <p class="text-on-surface text-sm md:text-base leading-relaxed">
                 Welcome back. I've analyzed your biometric data from this
                 morning. You're recovered and ready for a peak intensity
                 session. How can I assist your performance today?
@@ -291,38 +291,38 @@
             </div>
           </div>
           <!-- User Message -->
-          <div class="flex gap-4 max-w-2xl ml-auto flex-row-reverse">
+          <div class="flex gap-2 md:gap-4 max-w-2xl ml-auto flex-row-reverse">
             <div
-              class="w-8 h-8 rounded-lg bg-primary-container flex-shrink-0 flex items-center justify-center"
+              class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-primary-container flex-shrink-0 flex items-center justify-center"
             >
               <span
-                class="material-symbols-outlined text-on-primary-container text-xl"
+                class="material-symbols-outlined text-on-primary-container text-lg md:text-xl"
                 data-icon="person"
                 >person</span
               >
             </div>
-            <div class="bg-surface-variant p-6 rounded-xl rounded-tr-none">
-              <p class="text-on-surface leading-relaxed">
+            <div class="bg-surface-variant p-3 md:p-6 rounded-xl rounded-tr-none">
+              <p class="text-on-surface text-sm md:text-base leading-relaxed">
                 I need some meal advice for tonight. What should I eat to stay
                 on track with my goals?
               </p>
             </div>
           </div>
           <!-- Coach Response -->
-          <div class="flex gap-4 max-w-2xl">
+          <div class="flex gap-2 md:gap-4 max-w-2xl">
             <div
-              class="w-8 h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center"
+              class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center"
             >
               <span
-                class="material-symbols-outlined text-primary-container text-xl"
+                class="material-symbols-outlined text-primary-container text-lg md:text-xl"
                 data-icon="smart_toy"
                 >smart_toy</span
               >
             </div>
             <div
-              class="bg-surface-container p-6 rounded-xl rounded-tl-none border-l-4 border-primary-container"
+              class="bg-surface-container p-3 md:p-6 rounded-xl rounded-tl-none border-l-4 border-primary-container"
             >
-              <p class="text-on-surface leading-relaxed">
+              <p class="text-on-surface text-sm md:text-base leading-relaxed">
                 For your dinner tonight, since you've hit your protein goal, I
                 suggest a light portion of
                 <span class="text-primary font-bold"
@@ -331,22 +331,22 @@
                 micronutrients needed for muscle repair from yesterday's heavy
                 leg day.
               </p>
-              <div class="mt-4 flex gap-4">
-                <div class="bg-surface-container-low px-4 py-2 rounded-lg">
+              <div class="mt-3 md:mt-4 flex flex-wrap gap-2 md:gap-4">
+                <div class="bg-surface-container-low px-3 md:px-4 py-2 rounded-lg">
                   <span
                     class="font-label text-[10px] text-on-surface-variant block uppercase"
                     >CALORIES</span
                   >
-                  <span class="font-headline font-bold text-primary"
+                  <span class="font-headline font-bold text-primary text-sm md:text-base"
                     >340 kcal</span
                   >
                 </div>
-                <div class="bg-surface-container-low px-4 py-2 rounded-lg">
+                <div class="bg-surface-container-low px-3 md:px-4 py-2 rounded-lg">
                   <span
                     class="font-label text-[10px] text-on-surface-variant block uppercase"
                     >PROTEIN</span
                   >
-                  <span class="font-headline font-bold text-on-surface"
+                  <span class="font-headline font-bold text-on-surface text-sm md:text-base"
                     >38g</span
                   >
                 </div>
@@ -355,21 +355,21 @@
           </div>
         </div>
         <!-- Input & Suggestions -->
-        <div class="p-4 md:p-8 pt-0">
+        <div class="p-3 md:p-8 pt-0">
           <!-- Quick Suggestions -->
-          <div class="flex gap-3 mb-6 overflow-x-auto pb-2">
+          <div class="flex gap-2 md:gap-3 mb-3 md:mb-6 overflow-x-auto pb-2 -mx-1 px-1">
             <button onclick="sendMessage('Recommend a 15-min HIIT')"
-              class="whitespace-nowrap bg-surface-container-highest border-none px-4 py-2 rounded-full font-label text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
+              class="whitespace-nowrap bg-surface-container-highest border-none px-3 md:px-4 py-1.5 md:py-2 rounded-full font-label text-[11px] md:text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
             >
               Recommend a 15-min HIIT
             </button>
             <button onclick="sendMessage('Fix my squat form')"
-              class="whitespace-nowrap bg-surface-container-highest border-none px-4 py-2 rounded-full font-label text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
+              class="whitespace-nowrap bg-surface-container-highest border-none px-3 md:px-4 py-1.5 md:py-2 rounded-full font-label text-[11px] md:text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
             >
               Fix my squat form
             </button>
             <button onclick="sendMessage('Explain macro tracking')"
-              class="whitespace-nowrap bg-surface-container-highest border-none px-4 py-2 rounded-full font-label text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
+              class="whitespace-nowrap bg-surface-container-highest border-none px-3 md:px-4 py-1.5 md:py-2 rounded-full font-label text-[11px] md:text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
             >
               Explain macro tracking
             </button>
@@ -377,16 +377,16 @@
           <div class="relative group">
             <input
               id="chat-input"
-              class="w-full bg-surface-container-highest border-none rounded-xl py-5 px-6 pr-20 text-on-surface font-body focus:ring-0 placeholder:text-on-surface-variant transition-all focus:bg-surface-bright"
+              class="w-full bg-surface-container-highest border-none rounded-xl py-3 md:py-5 px-4 md:px-6 pr-[72px] md:pr-20 text-sm md:text-base text-on-surface font-body focus:ring-0 placeholder:text-on-surface-variant transition-all focus:bg-surface-bright"
               placeholder="Ask Kinetic Coach anything..."
               type="text"
               onkeydown="if(event.key==='Enter')sendFromInput()"
             />
             <div
-              class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3"
+              class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 md:gap-3"
             >
               <button
-                class="text-on-surface-variant hover:text-primary transition-colors"
+                class="text-on-surface-variant hover:text-primary transition-colors hidden sm:block"
               >
                 <span class="material-symbols-outlined" data-icon="mic"
                   >mic</span
@@ -394,9 +394,9 @@
               </button>
               <button
                 onclick="sendFromInput()"
-                class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container hover:scale-105 transition-transform active:scale-95"
+                class="w-9 h-9 md:w-10 md:h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container hover:scale-105 transition-transform active:scale-95"
               >
-                <span class="material-symbols-outlined" data-icon="send"
+                <span class="material-symbols-outlined text-xl md:text-2xl" data-icon="send"
                   >send</span
                 >
               </button>
@@ -675,13 +675,13 @@
 
       function addUserMessage(text) {
         const div = document.createElement('div');
-        div.className = 'flex gap-4 max-w-2xl ml-auto flex-row-reverse';
+        div.className = 'flex gap-2 md:gap-4 max-w-2xl ml-auto flex-row-reverse';
         div.innerHTML = `
-          <div class="w-8 h-8 rounded-lg bg-primary-container flex-shrink-0 flex items-center justify-center">
-            <span class="material-symbols-outlined text-on-primary-container text-xl">person</span>
+          <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-primary-container flex-shrink-0 flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-primary-container text-lg md:text-xl">person</span>
           </div>
-          <div class="bg-surface-variant p-4 md:p-6 rounded-xl rounded-tr-none">
-            <p class="text-on-surface leading-relaxed">${escapeHtml(text)}</p>
+          <div class="bg-surface-variant p-3 md:p-6 rounded-xl rounded-tr-none">
+            <p class="text-on-surface text-sm md:text-base leading-relaxed">${escapeHtml(text)}</p>
           </div>`;
         messagesEl.appendChild(div);
         scrollToBottom();
@@ -689,24 +689,24 @@
 
       function addCoachMessage(response) {
         const div = document.createElement('div');
-        div.className = 'flex gap-4 max-w-2xl';
+        div.className = 'flex gap-2 md:gap-4 max-w-2xl';
         let macroHtml = '';
         if (response.macros) {
-          macroHtml = '<div class="mt-4 flex flex-wrap gap-3">';
+          macroHtml = '<div class="mt-3 md:mt-4 flex flex-wrap gap-2 md:gap-3">';
           for (const [key, val] of Object.entries(response.macros)) {
-            macroHtml += `<div class="bg-surface-container-low px-4 py-2 rounded-lg">
+            macroHtml += `<div class="bg-surface-container-low px-3 md:px-4 py-2 rounded-lg">
               <span class="font-label text-[10px] text-on-surface-variant block uppercase">${escapeHtml(key)}</span>
-              <span class="font-headline font-bold text-primary text-sm">${escapeHtml(val)}</span>
+              <span class="font-headline font-bold text-primary text-xs md:text-sm">${escapeHtml(val)}</span>
             </div>`;
           }
           macroHtml += '</div>';
         }
         div.innerHTML = `
-          <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
-            <span class="material-symbols-outlined text-primary-container text-xl">smart_toy</span>
+          <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary-container text-lg md:text-xl">smart_toy</span>
           </div>
-          <div class="bg-surface-container p-4 md:p-6 rounded-xl rounded-tl-none border-l-4 border-primary-container">
-            <p class="text-on-surface leading-relaxed">${response.text}</p>
+          <div class="bg-surface-container p-3 md:p-6 rounded-xl rounded-tl-none border-l-4 border-primary-container">
+            <p class="text-on-surface text-sm md:text-base leading-relaxed">${response.text}</p>
             ${macroHtml}
           </div>`;
         messagesEl.appendChild(div);
@@ -716,12 +716,12 @@
       function addTypingIndicator() {
         const div = document.createElement('div');
         div.id = 'typing-indicator';
-        div.className = 'flex gap-4 max-w-2xl';
+        div.className = 'flex gap-2 md:gap-4 max-w-2xl';
         div.innerHTML = `
-          <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
-            <span class="material-symbols-outlined text-primary-container text-xl">smart_toy</span>
+          <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary-container text-lg md:text-xl">smart_toy</span>
           </div>
-          <div class="bg-surface-container p-4 md:p-6 rounded-xl rounded-tl-none flex items-center gap-2">
+          <div class="bg-surface-container p-3 md:p-6 rounded-xl rounded-tl-none flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-primary-dim animate-bounce" style="animation-delay:0ms"></span>
             <span class="w-2 h-2 rounded-full bg-primary-dim animate-bounce" style="animation-delay:150ms"></span>
             <span class="w-2 h-2 rounded-full bg-primary-dim animate-bounce" style="animation-delay:300ms"></span>
