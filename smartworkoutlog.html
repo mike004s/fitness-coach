@@ -110,16 +110,17 @@
   >
     <!-- TopAppBar -->
     <header
-      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-8 py-4 w-full h-20"
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-4 md:px-8 py-4 w-full h-16 md:h-20"
     >
       <div class="flex items-center gap-4">
+        <button id="menu-btn" onclick="toggleSidebar()" class="md:hidden material-symbols-outlined text-[#cafd00] p-1">menu</button>
         <a
-          class="text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
-          href="Index.html"
+          class="text-xl md:text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
+          href="index.html"
           >KINETIC</a
         >
       </div>
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-3 md:gap-6">
         <button
           class="material-symbols-outlined text-white/60 hover:bg-[#f3ffca]/10 transition-colors p-2 rounded-full"
         >
@@ -144,7 +145,8 @@
     </header>
     <!-- SideNavBar -->
     <aside
-      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] flex flex-col h-full pt-24 pb-8 hidden md:flex border-r border-outline-variant/5"
+      id="sidebar"
+      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] hidden md:flex flex-col pt-16 md:pt-24 pb-8 border-r border-outline-variant/5"
     >
       <div class="px-6 mb-10">
         <div class="font-['Lexend'] font-black text-[#cafd00] text-xl">
@@ -159,7 +161,7 @@
       <nav class="flex-1 px-4 space-y-2">
         <a
           class="flex items-center gap-3 px-4 py-3 text-white/40 hover:text-white hover:bg-white/5 transition-all font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:translate-x-1 duration-200"
-          href="Index.html"
+          href="index.html"
         >
           <span class="material-symbols-outlined">dashboard</span>
           Dashboard
@@ -203,8 +205,8 @@
       </div>
     </aside>
     <!-- Main Content Canvas -->
-    <main class="md:ml-64 pt-24 min-h-screen bg-background">
-      <div class="max-w-6xl mx-auto px-8 py-8">
+    <main class="md:ml-64 pt-20 md:pt-24 min-h-screen bg-background">
+      <div class="max-w-6xl mx-auto px-4 md:px-8 py-4 md:py-8">
         <!-- Workout Header Section -->
         <div
           class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
@@ -217,7 +219,7 @@
               Active Session
             </div>
             <h1
-              class="text-6xl md:text-7xl font-headline font-black uppercase tracking-tighter leading-none"
+              class="text-4xl md:text-6xl lg:text-7xl font-headline font-black uppercase tracking-tighter leading-none"
             >
               Leg Day <span class="text-white/20">—</span> Hypertrophy
             </h1>
@@ -225,7 +227,7 @@
           <div class="flex gap-4">
             <a
               class="bg-surface-container-highest text-white px-8 py-4 font-headline font-bold uppercase tracking-tighter active:scale-95 transition-transform inline-flex items-center"
-              href="Index.html"
+              href="index.html"
             >
               Cancel
             </a>
@@ -327,20 +329,20 @@
           <div class="col-span-12 lg:col-span-8 space-y-8 order-1 lg:order-2">
             <!-- Exercise Card 1 -->
             <div class="bg-surface-container-low overflow-hidden">
-              <div class="p-8 pb-4 flex justify-between items-start">
-                <div class="flex gap-6 items-center">
+              <div class="p-4 md:p-8 pb-4 flex flex-col sm:flex-row justify-between items-start gap-4">
+                <div class="flex gap-4 md:gap-6 items-center">
                   <div
-                    class="w-20 h-20 bg-surface-container-highest flex items-center justify-center"
+                    class="w-14 h-14 md:w-20 md:h-20 bg-surface-container-highest flex items-center justify-center flex-shrink-0"
                   >
                     <span
-                      class="material-symbols-outlined text-4xl text-primary/40"
+                      class="material-symbols-outlined text-3xl md:text-4xl text-primary/40"
                       >fitness_center</span
                     >
                   </div>
                   <div>
-                    <div class="flex items-center gap-3">
+                    <div class="flex flex-wrap items-center gap-2 md:gap-3">
                       <h2
-                        class="text-3xl font-headline font-bold uppercase tracking-tight"
+                        class="text-xl md:text-3xl font-headline font-bold uppercase tracking-tight"
                       >
                         Barbell Squats
                       </h2>
@@ -457,13 +459,13 @@
             </div>
             <!-- Exercise Card 2 -->
             <div class="bg-surface-container-low overflow-hidden">
-              <div class="p-8 pb-4 flex justify-between items-start">
-                <div class="flex gap-6 items-center">
+              <div class="p-4 md:p-8 pb-4 flex flex-col sm:flex-row justify-between items-start gap-4">
+                <div class="flex gap-4 md:gap-6 items-center">
                   <div
-                    class="w-20 h-20 bg-surface-container-highest flex items-center justify-center"
+                    class="w-14 h-14 md:w-20 md:h-20 bg-surface-container-highest flex items-center justify-center flex-shrink-0"
                   >
                     <span
-                      class="material-symbols-outlined text-4xl text-primary/40"
+                      class="material-symbols-outlined text-3xl md:text-4xl text-primary/40"
                       >settings_input_component</span
                     >
                   </div>
@@ -631,7 +633,7 @@
     >
       <a
         class="flex flex-col items-center gap-1 text-white/40"
-        href="Index.html"
+        href="index.html"
       >
         <span class="material-symbols-outlined">dashboard</span>
         <span class="text-[10px] font-label uppercase">Dash</span>
@@ -699,6 +701,24 @@
           }
         });
       })();
+    </script>
+    <!-- Mobile sidebar overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden" onclick="toggleSidebar()"></div>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const isOpen = sidebar.classList.contains('flex') && !sidebar.classList.contains('hidden');
+        if (isOpen) {
+          sidebar.classList.add('hidden');
+          sidebar.classList.remove('flex');
+          overlay.classList.add('hidden');
+        } else {
+          sidebar.classList.remove('hidden');
+          sidebar.classList.add('flex');
+          overlay.classList.remove('hidden');
+        }
+      }
     </script>
   </body>
 </html>

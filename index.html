@@ -109,24 +109,25 @@
   >
     <!-- TopAppBar -->
     <header
-      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-8 py-4 w-full h-20"
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-4 md:px-8 py-4 w-full h-16 md:h-20"
     >
       <div class="flex items-center gap-4">
+        <button id="menu-btn" onclick="toggleSidebar()" class="md:hidden material-symbols-outlined text-[#cafd00] p-1">menu</button>
         <a
-          class="text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
-          href="Index.html"
+          class="text-xl md:text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
+          href="index.html"
           >KINETIC</a
         >
       </div>
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-3 md:gap-6">
         <button
           class="material-symbols-outlined text-white/60 hover:bg-[#f3ffca]/10 transition-colors p-2 rounded-lg"
         >
           notifications
         </button>
-        <div class="flex items-center gap-3 pl-6 border-l border-white/10">
+        <div class="flex items-center gap-3 pl-3 md:pl-6 border-l border-white/10">
           <a
-            class="font-label text-xs font-bold uppercase tracking-widest text-[#cafd00] hover:text-primary transition-colors"
+            class="hidden sm:inline font-label text-xs font-bold uppercase tracking-widest text-[#cafd00] hover:text-primary transition-colors"
             href="smartworkoutlog.html"
             >Start Workout</a
           >
@@ -143,7 +144,8 @@
     </header>
     <!-- SideNavBar -->
     <aside
-      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] flex flex-col h-full pt-24 pb-8 border-r border-white/5"
+      id="sidebar"
+      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] hidden md:flex flex-col pt-16 md:pt-24 pb-8 border-r border-white/5"
     >
       <div class="px-6 mb-10">
         <h2 class="font-['Lexend'] font-black text-[#cafd00] text-xl">
@@ -159,7 +161,7 @@
         <!-- Active: Dashboard -->
         <a
           class="flex items-center gap-4 px-4 py-3 text-[#cafd00] border-r-4 border-[#cafd00] bg-gradient-to-r from-[#cafd00]/10 to-transparent font-['Space_Grotesk'] font-medium text-sm tracking-tight transition-all"
-          href="Index.html"
+          href="index.html"
         >
           <span
             class="material-symbols-outlined"
@@ -207,7 +209,7 @@
       </div>
     </aside>
     <!-- Main Content Canvas -->
-    <main class="ml-64 pt-24 min-h-screen p-8 bg-[#0e0e0e]">
+    <main class="md:ml-64 pt-20 md:pt-24 min-h-screen p-4 md:p-8 bg-[#0e0e0e]">
       <!-- Welcome Header & Quick Actions -->
       <div
         class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8"
@@ -226,7 +228,7 @@
             </span>
           </div>
           <h1
-            class="text-5xl font-headline font-black text-white tracking-tighter uppercase"
+            class="text-3xl md:text-5xl font-headline font-black text-white tracking-tighter uppercase"
           >
             Power Up, <span class="text-primary">Alex</span>
           </h1>
@@ -234,9 +236,9 @@
             Your performance index is up 12% from last week.
           </p>
         </div>
-        <div class="flex gap-4">
+        <div class="flex flex-wrap gap-3 md:gap-4">
           <a
-            class="group relative overflow-hidden bg-surface-container-highest px-6 py-4 rounded-xl transition-all hover:bg-surface-bright flex items-center gap-3"
+            class="group relative overflow-hidden bg-surface-container-highest px-4 md:px-6 py-3 md:py-4 rounded-xl transition-all hover:bg-surface-bright flex items-center gap-2 md:gap-3"
             href="smartworkoutlog.html"
           >
             <span class="material-symbols-outlined text-primary"
@@ -247,7 +249,7 @@
             >
           </a>
           <a
-            class="group relative overflow-hidden bg-surface-container-highest px-6 py-4 rounded-xl transition-all hover:bg-surface-bright flex items-center gap-3"
+            class="group relative overflow-hidden bg-surface-container-highest px-4 md:px-6 py-3 md:py-4 rounded-xl transition-all hover:bg-surface-bright flex items-center gap-2 md:gap-3"
             href="Nutrition & marco tracker.html"
           >
             <span class="material-symbols-outlined text-primary"
@@ -258,7 +260,7 @@
             >
           </a>
           <a
-            class="group relative overflow-hidden bg-primary-container px-6 py-4 rounded-xl transition-all hover:brightness-110 flex items-center gap-3"
+            class="group relative overflow-hidden bg-primary-container px-4 md:px-6 py-3 md:py-4 rounded-xl transition-all hover:brightness-110 flex items-center gap-2 md:gap-3"
             href="Ai fitness coach.html"
           >
             <span
@@ -559,5 +561,23 @@
         </div>
       </div>
     </main>
+    <!-- Mobile sidebar overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden" onclick="toggleSidebar()"></div>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const isOpen = sidebar.classList.contains('flex') && !sidebar.classList.contains('hidden');
+        if (isOpen) {
+          sidebar.classList.add('hidden');
+          sidebar.classList.remove('flex');
+          overlay.classList.add('hidden');
+        } else {
+          sidebar.classList.remove('hidden');
+          sidebar.classList.add('flex');
+          overlay.classList.remove('hidden');
+        }
+      }
+    </script>
   </body>
 </html>

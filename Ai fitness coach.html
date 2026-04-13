@@ -116,18 +116,19 @@
   >
     <!-- TopAppBar -->
     <header
-      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-8 py-4 w-full h-20"
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-4 md:px-8 py-4 w-full h-16 md:h-20"
     >
-      <div class="flex items-center gap-8">
+      <div class="flex items-center gap-4">
+        <button id="menu-btn" onclick="toggleSidebar()" class="md:hidden material-symbols-outlined text-[#cafd00] p-1">menu</button>
         <a
-          class="text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
-          href="Index.html"
+          class="text-xl md:text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
+          href="index.html"
           >KINETIC</a
         >
       </div>
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-3 md:gap-6">
         <a
-          class="bg-[#cafd00] text-[#4a5e00] px-6 py-2 font-['Lexend'] font-bold text-sm uppercase tracking-wider hover:bg-[#f3ffca]/10 transition-colors active:scale-95 transition-transform rounded-lg"
+          class="hidden sm:inline-block bg-[#cafd00] text-[#4a5e00] px-4 md:px-6 py-2 font-['Lexend'] font-bold text-sm uppercase tracking-wider hover:bg-[#f3ffca]/10 transition-colors active:scale-95 transition-transform rounded-lg"
           href="smartworkoutlog.html"
         >
           Start Workout
@@ -151,7 +152,8 @@
     </header>
     <!-- SideNavBar -->
     <aside
-      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] flex flex-col h-full pt-24 pb-8"
+      id="sidebar"
+      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] hidden md:flex flex-col pt-16 md:pt-24 pb-8"
     >
       <div class="px-6 mb-8">
         <h2 class="font-['Lexend'] font-black text-[#cafd00] text-xl">
@@ -166,7 +168,7 @@
       <nav class="flex-1 px-4 space-y-2">
         <a
           class="flex items-center gap-4 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200 group"
-          href="Index.html"
+          href="index.html"
         >
           <span
             class="material-symbols-outlined group-hover:text-white"
@@ -231,11 +233,11 @@
       </div>
     </aside>
     <!-- Main Canvas -->
-    <main class="ml-64 pt-20 h-screen flex overflow-hidden">
+    <main class="md:ml-64 pt-16 md:pt-20 h-screen flex flex-col md:flex-row overflow-hidden">
       <!-- Chat Interface Section -->
       <section class="flex-1 flex flex-col bg-surface relative">
         <!-- Chat Header -->
-        <div class="p-8 pb-4 flex items-center justify-between">
+        <div class="p-4 md:p-8 pb-4 flex items-center justify-between">
           <div class="flex items-center gap-4">
             <div
               class="w-12 h-12 bg-primary-container flex items-center justify-center rounded-xl shadow-[0_0_20px_rgba(202,253,0,0.3)]"
@@ -263,7 +265,7 @@
           </div>
         </div>
         <!-- Messages Area -->
-        <div class="flex-1 overflow-y-auto px-8 space-y-8 py-6">
+        <div class="flex-1 overflow-y-auto px-4 md:px-8 space-y-6 md:space-y-8 py-6">
           <!-- Coach Message -->
           <div class="flex gap-4 max-w-2xl">
             <div
@@ -348,7 +350,7 @@
           </div>
         </div>
         <!-- Input & Suggestions -->
-        <div class="p-8 pt-0">
+        <div class="p-4 md:p-8 pt-0">
           <!-- Quick Suggestions -->
           <div class="flex gap-3 mb-6 overflow-x-auto pb-2">
             <button
@@ -396,7 +398,7 @@
       </section>
       <!-- Context Panel (Sidebar) -->
       <aside
-        class="w-80 bg-surface-container-low border-l border-outline-variant/10 p-8 flex flex-col gap-8 overflow-y-auto"
+        class="hidden lg:flex w-80 bg-surface-container-low border-l border-outline-variant/10 p-8 flex-col gap-8 overflow-y-auto"
       >
         <!-- Daily Macros -->
         <div>
@@ -554,5 +556,23 @@
         </div>
       </aside>
     </main>
+    <!-- Mobile sidebar overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden" onclick="toggleSidebar()"></div>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const isOpen = sidebar.classList.contains('flex') && !sidebar.classList.contains('hidden');
+        if (isOpen) {
+          sidebar.classList.add('hidden');
+          sidebar.classList.remove('flex');
+          overlay.classList.add('hidden');
+        } else {
+          sidebar.classList.remove('hidden');
+          sidebar.classList.add('flex');
+          overlay.classList.remove('hidden');
+        }
+      }
+    </script>
   </body>
 </html>

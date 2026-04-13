@@ -124,12 +124,13 @@
   <body class="bg-background text-on-surface">
     <!-- TopAppBar -->
     <header
-      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-8 py-4 w-full h-20"
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-4 md:px-8 py-4 w-full h-16 md:h-20"
     >
       <div class="flex items-center gap-4">
+        <button onclick="toggleSidebar()" class="md:hidden material-symbols-outlined text-[#cafd00] p-1">menu</button>
         <a
-          class="text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
-          href="Index.html"
+          class="text-xl md:text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
+          href="index.html"
           >KINETIC</a
         >
       </div>
@@ -137,7 +138,7 @@
         <nav class="flex gap-6 text-sm font-label uppercase tracking-widest">
           <a
             class="text-white/40 hover:text-white transition-all"
-            href="Index.html"
+            href="index.html"
             >Dashboard</a
           >
           <a
@@ -180,13 +181,14 @@
           </a>
         </div>
       </div>
-      <button class="md:hidden material-symbols-outlined text-[#cafd00]">
+      <button class="hidden material-symbols-outlined text-[#cafd00]">
         menu
       </button>
     </header>
     <!-- SideNavBar -->
     <aside
-      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] hidden md:flex flex-col h-full pt-24 pb-8 border-r border-white/5"
+      id="sidebar"
+      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] hidden md:flex flex-col pt-16 md:pt-24 pb-8 border-r border-white/5"
     >
       <div class="px-8 mb-10">
         <div class="flex items-center gap-3">
@@ -216,7 +218,7 @@
       <nav class="flex-1 flex flex-col px-4 gap-2">
         <a
           class="flex items-center gap-3 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
-          href="Index.html"
+          href="index.html"
         >
           <span class="material-symbols-outlined">dashboard</span> Dashboard
         </a>
@@ -255,7 +257,7 @@
       </div>
     </aside>
     <!-- Main Content -->
-    <main class="md:ml-64 pt-24 px-6 md:px-12 pb-12">
+    <main class="md:ml-64 pt-20 md:pt-24 px-4 md:px-6 lg:px-12 pb-24 md:pb-12">
       <!-- Header Section -->
       <header
         class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6"
@@ -266,7 +268,7 @@
             >Performance Tracking</span
           >
           <h1
-            class="font-headline text-5xl md:text-7xl font-black mt-2 tracking-tighter"
+            class="font-headline text-4xl md:text-5xl lg:text-7xl font-black mt-2 tracking-tighter"
           >
             METRICS
           </h1>
@@ -836,7 +838,7 @@
     >
       <a
         class="flex flex-col items-center gap-1 text-white/40"
-        href="Index.html"
+        href="index.html"
       >
         <span class="material-symbols-outlined">dashboard</span>
         <span class="text-[10px] font-label uppercase">Home</span>
@@ -874,5 +876,23 @@
         <span class="text-[10px] font-label uppercase">Profile</span>
       </a>
     </nav>
+    <!-- Mobile sidebar overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden" onclick="toggleSidebar()"></div>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const isOpen = sidebar.classList.contains('flex') && !sidebar.classList.contains('hidden');
+        if (isOpen) {
+          sidebar.classList.add('hidden');
+          sidebar.classList.remove('flex');
+          overlay.classList.add('hidden');
+        } else {
+          sidebar.classList.remove('hidden');
+          sidebar.classList.add('flex');
+          overlay.classList.remove('hidden');
+        }
+      }
+    </script>
   </body>
 </html>
