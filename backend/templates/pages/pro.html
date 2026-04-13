@@ -1,0 +1,528 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KINETIC | Upgrade to Pro</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#1a1a1a",
+              "on-tertiary-fixed-variant": "#685900",
+              "surface-bright": "#2c2c2c",
+              "surface-variant": "#262626",
+              "primary-dim": "#beee00",
+              "on-secondary-fixed-variant": "#932d00",
+              "on-primary-fixed": "#3a4a00",
+              secondary: "#ff7441",
+              "secondary-container": "#ab3600",
+              "secondary-fixed-dim": "#ffb197",
+              tertiary: "#ffeea5",
+              "inverse-on-surface": "#565555",
+              "on-primary-container": "#4a5e00",
+              "surface-container-low": "#131313",
+              "surface-dim": "#0e0e0e",
+              "on-primary": "#516700",
+              primary: "#f3ffca",
+              "on-error-container": "#ffd2c8",
+              "on-secondary-fixed": "#631b00",
+              "on-tertiary-container": "#5d5000",
+              error: "#ff7351",
+              "on-surface": "#ffffff",
+              "error-dim": "#d53d18",
+              "inverse-primary": "#516700",
+              "tertiary-fixed-dim": "#edd13a",
+              "tertiary-fixed": "#fce047",
+              "secondary-fixed": "#ffc4b1",
+              "primary-container": "#cafd00",
+              "primary-fixed": "#cafd00",
+              "on-surface-variant": "#adaaaa",
+              "outline-variant": "#484847",
+              "on-secondary-container": "#fff6f3",
+              "on-secondary": "#410f00",
+              "surface-container-lowest": "#000000",
+              "secondary-dim": "#ff7441",
+              "tertiary-dim": "#edd13a",
+              "on-background": "#ffffff",
+              outline: "#767575",
+              "on-primary-fixed-variant": "#526900",
+              background: "#0e0e0e",
+              "primary-fixed-dim": "#beee00",
+              "error-container": "#b92902",
+              surface: "#0e0e0e",
+              "surface-tint": "#f3ffca",
+              "on-tertiary-fixed": "#483d00",
+              "tertiary-container": "#fce047",
+              "surface-container-highest": "#262626",
+              "surface-container-high": "#20201f",
+              "inverse-surface": "#fcf9f8",
+              "on-error": "#450900",
+              "on-tertiary": "#665800",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Lexend"],
+              body: ["Inter"],
+              label: ["Space Grotesk"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-headline {
+        font-family: "Lexend", sans-serif;
+      }
+      .font-label {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      ::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0e0e0e;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #262626;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #cafd00;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface min-h-screen">
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-8 py-4 h-20"
+    >
+      <div class="flex items-center gap-4">
+        <a
+          class="text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
+          href="{% url 'accounts:home' %}"
+          >KINETIC</a
+        >
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <nav class="flex gap-6 text-sm font-label uppercase tracking-widest">
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="{% url 'accounts:home' %}"
+            >Dashboard</a
+          >
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="{% url 'accounts:workouts' %}"
+            >Workouts</a
+          >
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="{% url 'accounts:nutrition' %}"
+            >Nutrition</a
+          >
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="{% url 'accounts:metrics' %}"
+            >Metrics</a
+          >
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="{% url 'accounts:ai_coach' %}"
+            >AI Coach</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <a
+            class="bg-[#cafd00] text-[#4a5e00] px-6 py-2 font-label font-bold text-xs uppercase tracking-tighter rounded-sm active:scale-95 transition-transform"
+            href="{% url 'accounts:workouts' %}"
+            >Start Workout</a
+          >
+          <a href="{% url 'accounts:logout' %}">
+            <img
+              alt="User fitness profile"
+              class="w-10 h-10 rounded-full object-cover border border-[#cafd00]/20"
+              data-alt="close-up portrait of a determined athlete with subtle sweat, high contrast studio lighting, dark background"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMPMazJsG1I2WuJK35qsHzAcwEOOJwmLxC10MSU5AB2KoW2VjjZlxghISICH2itQralcHsSQj9yaFomQBJ5Wyzw2AciMVkWJuSSzoZ23EgbLkRU0ENtFnUsAdi6UhPm-YOh8S8EESc-yQ5tkHC1gnTSvySCM3fmsR7XLAXmIdRDGUldMelnjuEzESlSkvEpQF90FOVZoQHujoV1rJiAZwovxlvxcfE-GAxfYnS9QRpFwcsnP4_HCKigGAI32e0JJp8au5d-eoPRCY"
+            />
+          </a>
+        </div>
+      </div>
+      <button class="md:hidden material-symbols-outlined text-[#cafd00]">
+        menu
+      </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 px-6 md:px-12 max-w-6xl mx-auto">
+      <!-- Hero -->
+      <div class="text-center mb-16">
+        <span
+          class="font-label text-[#cafd00] text-xs font-bold uppercase tracking-[0.3em]"
+          >Unlock Your Full Potential</span
+        >
+        <h1
+          class="font-headline text-5xl md:text-7xl font-black mt-3 tracking-tighter"
+        >
+          GO <span class="text-[#cafd00]">PRO</span>
+        </h1>
+        <p
+          class="text-on-surface-variant mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed"
+        >
+          Upgrade your training with advanced AI coaching, detailed analytics,
+          and exclusive features built for serious athletes.
+        </p>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-20">
+        <!-- Free Plan -->
+        <div
+          class="bg-surface-container-high border border-outline-variant rounded-xl p-8 flex flex-col"
+        >
+          <span
+            class="font-label text-on-surface-variant text-[10px] font-bold uppercase tracking-[0.3em]"
+            >Current Plan</span
+          >
+          <h2 class="font-headline text-3xl font-black mt-2 tracking-tight">
+            FREE
+          </h2>
+          <p class="text-on-surface-variant text-sm mt-2 mb-8">
+            Basic tracking and workout logging to get you started.
+          </p>
+          <ul class="space-y-4 mb-auto">
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Basic workout logging</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Daily macro tracking</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Body metrics dashboard</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>5 AI coach messages / day</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm text-on-surface-variant">
+              <span class="material-symbols-outlined text-outline text-lg"
+                >cancel</span
+              >
+              <span>Advanced analytics</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm text-on-surface-variant">
+              <span class="material-symbols-outlined text-outline text-lg"
+                >cancel</span
+              >
+              <span>Custom meal plans</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm text-on-surface-variant">
+              <span class="material-symbols-outlined text-outline text-lg"
+                >cancel</span
+              >
+              <span>Priority support</span>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <a
+              href="{% url 'accounts:home' %}"
+              class="block text-center w-full py-4 border border-outline-variant text-on-surface-variant font-label text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-surface-bright transition-colors"
+              >Your Current Plan</a
+            >
+          </div>
+        </div>
+
+        <!-- Pro Plan -->
+        <div
+          class="bg-surface-container-high border-2 border-[#cafd00] rounded-xl p-8 flex flex-col relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 bg-[#cafd00] text-[#3a4a00] font-label text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-bl-xl"
+          >
+            Recommended
+          </div>
+          <span
+            class="font-label text-[#cafd00] text-[10px] font-bold uppercase tracking-[0.3em]"
+            >Pro Plan</span
+          >
+          <div class="flex items-baseline gap-1 mt-2">
+            <h2 class="font-headline text-3xl font-black tracking-tight">
+              $9.99
+            </h2>
+            <span class="text-on-surface-variant text-sm">/month</span>
+          </div>
+          <p class="text-on-surface-variant text-sm mt-2 mb-8">
+            Full access to every feature. Train smarter, recover faster.
+          </p>
+          <ul class="space-y-4 mb-auto">
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Everything in Free</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Unlimited AI coach conversations</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Advanced performance analytics</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Custom AI-generated meal plans</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Periodized training programs</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Progress photo comparisons</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <span
+                class="material-symbols-outlined text-[#cafd00] text-lg"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >check_circle</span
+              >
+              <span>Priority support &amp; early features</span>
+            </li>
+          </ul>
+          <div class="mt-8">
+            <a
+              href="{% url 'accounts:signup' %}"
+              class="block text-center w-full py-4 bg-[#cafd00] text-[#3a4a00] font-label text-xs font-bold uppercase tracking-widest rounded-xl hover:brightness-110 transition-all active:scale-[0.98]"
+              >Activate Pro Now</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Highlights -->
+      <section class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span
+            class="font-label text-[#cafd00] text-[10px] font-bold uppercase tracking-[0.3em]"
+            >Pro Features</span
+          >
+          <h2
+            class="font-headline text-3xl md:text-4xl font-black mt-2 tracking-tight"
+          >
+            WHAT YOU UNLOCK
+          </h2>
+        </div>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <!-- Feature 1 -->
+          <div
+            class="bg-surface-container-high border border-outline-variant rounded-xl p-6 hover:border-[#cafd00]/30 transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#cafd00]/10 flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-[#cafd00]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >psychology</span
+              >
+            </div>
+            <h3 class="font-headline font-bold text-sm tracking-tight mb-2">
+              Unlimited AI Coach
+            </h3>
+            <p class="text-on-surface-variant text-xs leading-relaxed">
+              No daily limits. Get real-time form corrections, program
+              adjustments, and recovery advice 24/7.
+            </p>
+          </div>
+          <!-- Feature 2 -->
+          <div
+            class="bg-surface-container-high border border-outline-variant rounded-xl p-6 hover:border-[#cafd00]/30 transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#cafd00]/10 flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-[#cafd00]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >analytics</span
+              >
+            </div>
+            <h3 class="font-headline font-bold text-sm tracking-tight mb-2">
+              Advanced Analytics
+            </h3>
+            <p class="text-on-surface-variant text-xs leading-relaxed">
+              Deep dive into your performance trends, muscle activation maps,
+              and recovery scores over time.
+            </p>
+          </div>
+          <!-- Feature 3 -->
+          <div
+            class="bg-surface-container-high border border-outline-variant rounded-xl p-6 hover:border-[#cafd00]/30 transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#cafd00]/10 flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-[#cafd00]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >restaurant</span
+              >
+            </div>
+            <h3 class="font-headline font-bold text-sm tracking-tight mb-2">
+              Custom Meal Plans
+            </h3>
+            <p class="text-on-surface-variant text-xs leading-relaxed">
+              AI-generated nutrition plans based on your goals, preferences, and
+              local food database.
+            </p>
+          </div>
+          <!-- Feature 4 -->
+          <div
+            class="bg-surface-container-high border border-outline-variant rounded-xl p-6 hover:border-[#cafd00]/30 transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#cafd00]/10 flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-[#cafd00]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >fitness_center</span
+              >
+            </div>
+            <h3 class="font-headline font-bold text-sm tracking-tight mb-2">
+              Training Programs
+            </h3>
+            <p class="text-on-surface-variant text-xs leading-relaxed">
+              Periodized programs that adapt weekly based on your logged
+              performance and recovery data.
+            </p>
+          </div>
+          <!-- Feature 5 -->
+          <div
+            class="bg-surface-container-high border border-outline-variant rounded-xl p-6 hover:border-[#cafd00]/30 transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#cafd00]/10 flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-[#cafd00]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >photo_camera</span
+              >
+            </div>
+            <h3 class="font-headline font-bold text-sm tracking-tight mb-2">
+              Progress Comparisons
+            </h3>
+            <p class="text-on-surface-variant text-xs leading-relaxed">
+              Side-by-side progress photo overlays with AI body composition
+              estimates and visual timelines.
+            </p>
+          </div>
+          <!-- Feature 6 -->
+          <div
+            class="bg-surface-container-high border border-outline-variant rounded-xl p-6 hover:border-[#cafd00]/30 transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-[#cafd00]/10 flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-[#cafd00]"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >support_agent</span
+              >
+            </div>
+            <h3 class="font-headline font-bold text-sm tracking-tight mb-2">
+              Priority Support
+            </h3>
+            <p class="text-on-surface-variant text-xs leading-relaxed">
+              Get early access to new features and priority responses from the
+              KINETIC support team.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Back Link -->
+      <div class="text-center mt-16">
+        <a
+          href="{% url 'accounts:home' %}"
+          class="inline-flex items-center gap-2 text-on-surface-variant text-sm hover:text-white transition-colors"
+        >
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          Back to Dashboard
+        </a>
+      </div>
+    </main>
+
+    <!-- Decoration Layer -->
+    <div
+      class="fixed top-1/3 -right-64 w-[500px] h-[500px] bg-[#cafd00]/5 rounded-full blur-[120px] pointer-events-none z-0"
+    ></div>
+    <div
+      class="fixed bottom-0 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none z-0"
+    ></div>
+  </body>
+</html>

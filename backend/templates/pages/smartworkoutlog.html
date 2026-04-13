@@ -1,0 +1,704 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;family=Space_Grotesk:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#1a1a1a",
+              "on-tertiary-fixed-variant": "#685900",
+              "surface-bright": "#2c2c2c",
+              "surface-variant": "#262626",
+              "primary-dim": "#beee00",
+              "on-secondary-fixed-variant": "#932d00",
+              "on-primary-fixed": "#3a4a00",
+              secondary: "#ff7441",
+              "secondary-container": "#ab3600",
+              "secondary-fixed-dim": "#ffb197",
+              tertiary: "#ffeea5",
+              "inverse-on-surface": "#565555",
+              "on-primary-container": "#4a5e00",
+              "surface-container-low": "#131313",
+              "surface-dim": "#0e0e0e",
+              "on-primary": "#516700",
+              primary: "#f3ffca",
+              "on-error-container": "#ffd2c8",
+              "on-secondary-fixed": "#631b00",
+              "on-tertiary-container": "#5d5000",
+              error: "#ff7351",
+              "on-surface": "#ffffff",
+              "error-dim": "#d53d18",
+              "inverse-primary": "#516700",
+              "tertiary-fixed-dim": "#edd13a",
+              "tertiary-fixed": "#fce047",
+              "secondary-fixed": "#ffc4b1",
+              "primary-container": "#cafd00",
+              "primary-fixed": "#cafd00",
+              "on-surface-variant": "#adaaaa",
+              "outline-variant": "#484847",
+              "on-secondary-container": "#fff6f3",
+              "on-secondary": "#410f00",
+              "surface-container-lowest": "#000000",
+              "secondary-dim": "#ff7441",
+              "tertiary-dim": "#edd13a",
+              "on-background": "#ffffff",
+              outline: "#767575",
+              "on-primary-fixed-variant": "#526900",
+              background: "#0e0e0e",
+              "primary-fixed-dim": "#beee00",
+              "error-container": "#b92902",
+              surface: "#0e0e0e",
+              "surface-tint": "#f3ffca",
+              "on-tertiary-fixed": "#483d00",
+              "tertiary-container": "#fce047",
+              "surface-container-highest": "#262626",
+              "surface-container-high": "#20201f",
+              "inverse-surface": "#fcf9f8",
+              "on-error": "#450900",
+              "on-tertiary": "#665800",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Lexend"],
+              body: ["Inter"],
+              label: ["Space_Grotesk"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .kinetic-glass {
+        background: rgba(38, 38, 38, 0.6);
+        backdrop-filter: blur(24px);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-8 py-4 w-full h-20"
+    >
+      <div class="flex items-center gap-4">
+        <a
+          class="text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
+          href="{% url 'accounts:home' %}"
+          >KINETIC</a
+        >
+      </div>
+      <div class="flex items-center gap-6">
+        <button
+          class="material-symbols-outlined text-white/60 hover:bg-[#f3ffca]/10 transition-colors p-2 rounded-full"
+        >
+          notifications
+        </button>
+        <div
+          class="h-10 w-10 rounded-full overflow-hidden border border-outline-variant/15"
+        >
+          <a href="{% url 'accounts:logout' %}"
+            ><img
+              class="h-full w-full object-cover"
+              data-alt="Close-up profile of a professional athlete with intense focus and beads of sweat, dramatic high-contrast lighting"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd_XrJU0tLal3B6It8tzMcuKntrVfoeIH9iPulDu8IGwu9OGsTvK0Z6z7tTd2XjjT4yXl53a51Av-APOU2ZejGgtMzeGfu1cIRcl1gbUivi98CP1DHnQ_b5o18hIJHLjYPHgtAUdzEiIuztoVCxz8GQPTyRDvqzybERuqFrIOjsYGF9515v3euVwchXYODB1KE_Dw5cjtqs3EKOkD11OseT3jfr6D3JJLisjqvgXB5ojLVluv4hX9-mfvMZq_wtNz3Dj0z_VsIZHo"
+          /></a>
+        </div>
+        <a
+          class="bg-[#cafd00] text-[#4a5e00] px-6 py-2 font-['Lexend'] font-bold uppercase tracking-tighter transition-transform active:scale-95"
+          href="{% url 'accounts:workouts' %}"
+          >Start Workout</a
+        >
+      </div>
+    </header>
+    <!-- SideNavBar -->
+    <aside
+      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] flex flex-col h-full pt-24 pb-8 hidden md:flex border-r border-outline-variant/5"
+    >
+      <div class="px-6 mb-10">
+        <div class="font-['Lexend'] font-black text-[#cafd00] text-xl">
+          KINETIC
+        </div>
+        <div
+          class="font-['Space_Grotesk'] font-medium text-xs tracking-tight text-white/40 uppercase"
+        >
+          Peak Performance
+        </div>
+      </div>
+      <nav class="flex-1 px-4 space-y-2">
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-white/40 hover:text-white hover:bg-white/5 transition-all font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:translate-x-1 duration-200"
+          href="{% url 'accounts:home' %}"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          Dashboard
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-[#cafd00] border-r-4 border-[#cafd00] bg-gradient-to-r from-[#cafd00]/10 to-transparent font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:translate-x-1 duration-200"
+          href="{% url 'accounts:workouts' %}"
+        >
+          <span class="material-symbols-outlined">fitness_center</span>
+          Workouts
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-white/40 hover:text-white hover:bg-white/5 transition-all font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:translate-x-1 duration-200"
+          href="{% url 'accounts:nutrition' %}"
+        >
+          <span class="material-symbols-outlined">restaurant</span>
+          Nutrition
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-white/40 hover:text-white hover:bg-white/5 transition-all font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:translate-x-1 duration-200"
+          href="{% url 'accounts:metrics' %}"
+        >
+          <span class="material-symbols-outlined">monitoring</span>
+          Metrics
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-white/40 hover:text-white hover:bg-white/5 transition-all font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:translate-x-1 duration-200"
+          href="{% url 'accounts:ai_coach' %}"
+        >
+          <span class="material-symbols-outlined">psychology</span>
+          AI Coach
+        </a>
+      </nav>
+      <div class="px-6">
+        <a
+          href="{% url 'accounts:pro' %}"
+          class="block text-center w-full py-4 bg-surface-container-highest text-primary font-['Space_Grotesk'] font-bold text-xs uppercase tracking-widest hover:bg-surface-bright transition-colors"
+        >
+          Upgrade to Pro
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content Canvas -->
+    <main class="md:ml-64 pt-24 min-h-screen bg-background">
+      <div class="max-w-6xl mx-auto px-8 py-8">
+        <!-- Workout Header Section -->
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+        >
+          <div class="space-y-2">
+            <div
+              class="flex items-center gap-3 font-label text-primary-container text-xs tracking-[0.2em] uppercase"
+            >
+              <span class="w-8 h-px bg-primary-container"></span>
+              Active Session
+            </div>
+            <h1
+              class="text-6xl md:text-7xl font-headline font-black uppercase tracking-tighter leading-none"
+            >
+              Leg Day <span class="text-white/20">—</span> Hypertrophy
+            </h1>
+          </div>
+          <div class="flex gap-4">
+            <a
+              class="bg-surface-container-highest text-white px-8 py-4 font-headline font-bold uppercase tracking-tighter active:scale-95 transition-transform inline-flex items-center"
+              href="{% url 'accounts:home' %}"
+            >
+              Cancel
+            </a>
+            <button
+              id="start-workout-btn"
+              class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-12 py-4 font-headline font-bold uppercase tracking-tighter active:scale-95 transition-transform shadow-[0_32px_32px_-4px_rgba(255,255,255,0.08)]"
+            >
+              Start Workout
+            </button>
+          </div>
+        </div>
+        <!-- Bento Grid Content -->
+        <div class="grid grid-cols-12 gap-8">
+          <!-- AI Adaptive Tip (Full Width Mobile, Top Corner Web) -->
+          <div class="col-span-12 lg:col-span-4 order-2 lg:order-1">
+            <div
+              class="bg-surface-container-low p-8 relative overflow-hidden group"
+            >
+              <div
+                class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+              >
+                <span
+                  class="material-symbols-outlined text-8xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >psychology</span
+                >
+              </div>
+              <h3
+                class="font-label text-primary text-xs uppercase tracking-widest mb-4"
+              >
+                Adaptive Coaching
+              </h3>
+              <p
+                class="font-body text-xl font-medium leading-tight text-on-surface"
+              >
+                Based on last week, try increasing
+                <span class="text-primary-container">Squat weight by 5kg</span>
+                for your final set!
+              </p>
+              <div
+                class="mt-6 flex items-center gap-2 text-white/40 font-label text-xs"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >trending_up</span
+                >
+                Projected 1RM: 145kg
+              </div>
+            </div>
+            <!-- Progression Graph Card -->
+            <div class="mt-8 bg-surface-container-low p-8">
+              <div class="flex justify-between items-center mb-8">
+                <h3
+                  class="font-label text-white/40 text-xs uppercase tracking-widest"
+                >
+                  Barbell Squats Volume
+                </h3>
+                <span class="text-primary font-label text-xs"
+                  >+12.5% this month</span
+                >
+              </div>
+              <!-- Mock Graph -->
+              <div class="h-48 flex items-end gap-2 relative">
+                <div
+                  class="w-full h-full absolute inset-0 flex flex-col justify-between opacity-10 pointer-events-none"
+                >
+                  <div class="w-full h-px bg-white"></div>
+                  <div class="w-full h-px bg-white"></div>
+                  <div class="w-full h-px bg-white"></div>
+                </div>
+                <div
+                  class="flex-1 bg-surface-container-highest h-[40%] group relative"
+                >
+                  <div
+                    class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-label text-white/40 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    W1
+                  </div>
+                </div>
+                <div
+                  class="flex-1 bg-surface-container-highest h-[55%] group relative"
+                ></div>
+                <div
+                  class="flex-1 bg-surface-container-highest h-[48%] group relative"
+                ></div>
+                <div
+                  class="flex-1 bg-surface-container-highest h-[72%] group relative"
+                ></div>
+                <div class="flex-1 bg-primary-container h-[85%] group relative">
+                  <div
+                    class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-label text-primary opacity-100"
+                  >
+                    NOW
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Exercises List -->
+          <div class="col-span-12 lg:col-span-8 space-y-8 order-1 lg:order-2">
+            <!-- Exercise Card 1 -->
+            <div class="bg-surface-container-low overflow-hidden">
+              <div class="p-8 pb-4 flex justify-between items-start">
+                <div class="flex gap-6 items-center">
+                  <div
+                    class="w-20 h-20 bg-surface-container-highest flex items-center justify-center"
+                  >
+                    <span
+                      class="material-symbols-outlined text-4xl text-primary/40"
+                      >fitness_center</span
+                    >
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-3">
+                      <h2
+                        class="text-3xl font-headline font-bold uppercase tracking-tight"
+                      >
+                        Barbell Squats
+                      </h2>
+                      <div
+                        class="flex items-center gap-1 bg-secondary/10 px-2 py-1 rounded-sm text-secondary font-label text-[10px] uppercase font-bold"
+                      >
+                        <span
+                          class="material-symbols-outlined text-xs"
+                          style="font-variation-settings: &quot;FILL&quot; 1"
+                          >emoji_events</span
+                        >
+                        New PR potential
+                      </div>
+                    </div>
+                    <p
+                      class="text-white/40 font-label text-xs uppercase tracking-widest mt-1"
+                    >
+                      Compound • Lower Body • Quads
+                    </p>
+                  </div>
+                </div>
+                <button
+                  class="material-symbols-outlined text-white/20 hover:text-white transition-colors"
+                >
+                  more_vert
+                </button>
+              </div>
+              <!-- Table Style Sets -->
+              <div class="px-8 pb-8">
+                <div
+                  class="grid grid-cols-12 gap-4 py-3 border-b border-outline-variant/10 text-[10px] font-label uppercase text-white/40 tracking-[0.2em]"
+                >
+                  <div class="col-span-1 text-center">Set</div>
+                  <div class="col-span-4">Previous</div>
+                  <div class="col-span-2 text-center">KG</div>
+                  <div class="col-span-2 text-center">Reps</div>
+                  <div class="col-span-3 flex justify-end pr-2">Status</div>
+                </div>
+                <!-- Set 1 -->
+                <div
+                  class="grid grid-cols-12 gap-4 py-4 items-center group transition-colors hover:bg-white/[0.02]"
+                >
+                  <div class="col-span-1 text-center font-label text-white/20">
+                    1
+                  </div>
+                  <div class="col-span-4 font-body text-sm text-white/60">
+                    100kg x 10 reps
+                  </div>
+                  <div class="col-span-2">
+                    <input
+                      class="w-full bg-surface-container-highest border-none text-center font-label text-primary focus:ring-1 focus:ring-primary-container p-2 text-lg"
+                      type="text"
+                      value="100"
+                    />
+                  </div>
+                  <div class="col-span-2">
+                    <input
+                      class="w-full bg-surface-container-highest border-none text-center font-label text-primary focus:ring-1 focus:ring-primary-container p-2 text-lg"
+                      type="text"
+                      value="10"
+                    />
+                  </div>
+                  <div class="col-span-3 flex justify-end">
+                    <label class="relative flex items-center cursor-pointer">
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-10 h-10 bg-surface-container-highest flex items-center justify-center transition-all peer-checked:bg-primary-container peer-checked:text-on-primary-container"
+                      >
+                        <span class="material-symbols-outlined text-xl"
+                          >check</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <!-- Set 2 -->
+                <div
+                  class="grid grid-cols-12 gap-4 py-4 items-center group transition-colors hover:bg-white/[0.02]"
+                >
+                  <div class="col-span-1 text-center font-label text-white/20">
+                    2
+                  </div>
+                  <div class="col-span-4 font-body text-sm text-white/60">
+                    100kg x 10 reps
+                  </div>
+                  <div class="col-span-2">
+                    <input
+                      class="w-full bg-surface-container-highest border-none text-center font-label text-white/60 focus:bg-surface-bright focus:ring-1 focus:ring-primary-container p-2 text-lg"
+                      placeholder="100"
+                      type="text"
+                    />
+                  </div>
+                  <div class="col-span-2">
+                    <input
+                      class="w-full bg-surface-container-highest border-none text-center font-label text-white/60 focus:bg-surface-bright focus:ring-1 focus:ring-primary-container p-2 text-lg"
+                      placeholder="10"
+                      type="text"
+                    />
+                  </div>
+                  <div class="col-span-3 flex justify-end">
+                    <label class="relative flex items-center cursor-pointer">
+                      <input class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-10 h-10 bg-surface-container-highest flex items-center justify-center transition-all hover:bg-surface-bright peer-checked:bg-primary-container peer-checked:text-on-primary-container"
+                      >
+                        <span class="material-symbols-outlined text-xl"
+                          >check</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Exercise Card 2 -->
+            <div class="bg-surface-container-low overflow-hidden">
+              <div class="p-8 pb-4 flex justify-between items-start">
+                <div class="flex gap-6 items-center">
+                  <div
+                    class="w-20 h-20 bg-surface-container-highest flex items-center justify-center"
+                  >
+                    <span
+                      class="material-symbols-outlined text-4xl text-primary/40"
+                      >settings_input_component</span
+                    >
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-3">
+                      <h2
+                        class="text-3xl font-headline font-bold uppercase tracking-tight"
+                      >
+                        Leg Press
+                      </h2>
+                    </div>
+                    <p
+                      class="text-white/40 font-label text-xs uppercase tracking-widest mt-1"
+                    >
+                      Machine • Isolation • Quads
+                    </p>
+                  </div>
+                </div>
+                <button
+                  class="material-symbols-outlined text-white/20 hover:text-white transition-colors"
+                >
+                  more_vert
+                </button>
+              </div>
+              <div class="px-8 pb-8">
+                <div
+                  class="grid grid-cols-12 gap-4 py-3 border-b border-outline-variant/10 text-[10px] font-label uppercase text-white/40 tracking-[0.2em]"
+                >
+                  <div class="col-span-1 text-center">Set</div>
+                  <div class="col-span-4">Previous</div>
+                  <div class="col-span-2 text-center">KG</div>
+                  <div class="col-span-2 text-center">Reps</div>
+                  <div class="col-span-3 flex justify-end pr-2">Status</div>
+                </div>
+                <!-- Set 1 -->
+                <div
+                  class="grid grid-cols-12 gap-4 py-4 items-center group transition-colors hover:bg-white/[0.02]"
+                >
+                  <div class="col-span-1 text-center font-label text-white/20">
+                    1
+                  </div>
+                  <div class="col-span-4 font-body text-sm text-white/60">
+                    240kg x 12 reps
+                  </div>
+                  <div class="col-span-2">
+                    <input
+                      class="w-full bg-surface-container-highest border-none text-center font-label text-white/60 focus:bg-surface-bright p-2 text-lg"
+                      placeholder="240"
+                      type="text"
+                    />
+                  </div>
+                  <div class="col-span-2">
+                    <input
+                      class="w-full bg-surface-container-highest border-none text-center font-label text-white/60 focus:bg-surface-bright p-2 text-lg"
+                      placeholder="12"
+                      type="text"
+                    />
+                  </div>
+                  <div class="col-span-3 flex justify-end">
+                    <label class="relative flex items-center cursor-pointer">
+                      <input class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-10 h-10 bg-surface-container-highest flex items-center justify-center transition-all hover:bg-surface-bright peer-checked:bg-primary-container peer-checked:text-on-primary-container"
+                      >
+                        <span class="material-symbols-outlined text-xl"
+                          >check</span
+                        >
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Asymmetrical Bottom Stat -->
+        <div class="mt-16 grid grid-cols-12 gap-8">
+          <div
+            class="col-span-12 md:col-span-6 bg-primary-container/10 p-12 relative overflow-hidden flex flex-col justify-end min-h-[300px]"
+          >
+            <div
+              class="absolute -top-12 -right-12 w-64 h-64 border-[40px] border-primary-container/5 rounded-full pointer-events-none"
+            ></div>
+            <div class="relative z-10">
+              <div
+                class="font-label text-primary-container text-xs uppercase tracking-widest mb-4"
+              >
+                Total Workout Volume
+              </div>
+              <div class="flex items-baseline gap-4">
+                <span class="text-8xl font-headline font-black tracking-tighter"
+                  >12,450</span
+                >
+                <span
+                  class="text-3xl font-headline font-bold text-primary-container"
+                  >KG</span
+                >
+              </div>
+              <p class="text-white/40 mt-4 max-w-xs font-body">
+                You are currently pacing 4% ahead of your average volume for Leg
+                Day sessions.
+              </p>
+            </div>
+          </div>
+          <div class="col-span-12 md:col-span-6 flex flex-col gap-8">
+            <div
+              class="flex-1 bg-surface-container-low p-8 flex items-center gap-8"
+            >
+              <div
+                class="w-24 h-24 rounded-full border-4 border-secondary/20 flex items-center justify-center p-2"
+              >
+                <div
+                  class="w-full h-full rounded-full border-4 border-secondary border-t-transparent animate-pulse flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-secondary"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >favorite</span
+                  >
+                </div>
+              </div>
+              <div>
+                <div
+                  class="font-label text-secondary text-xs uppercase tracking-widest mb-1"
+                >
+                  Live Heart Rate
+                </div>
+                <div class="text-5xl font-headline font-bold">
+                  142 <span class="text-sm font-label text-white/40">BPM</span>
+                </div>
+                <div class="mt-2 text-xs text-white/60">
+                  Zone 3 • Aerobic Base
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex-1 bg-surface-container-low p-8 flex items-center gap-8"
+            >
+              <div
+                class="w-24 h-24 bg-surface-container-highest flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-4xl text-primary"
+                  >timer</span
+                >
+              </div>
+              <div>
+                <div
+                  class="font-label text-primary text-xs uppercase tracking-widest mb-1"
+                >
+                  Elapsed Time
+                </div>
+                <div class="text-5xl font-headline font-bold">00:42:15</div>
+                <div class="mt-2 text-xs text-white/60">
+                  Target Duration: 1h 15m
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Mobile Navigation (Visible only on small screens) -->
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full kinetic-glass h-20 flex justify-around items-center px-4 z-50"
+    >
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="{% url 'accounts:home' %}"
+      >
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="text-[10px] font-label uppercase">Dash</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-[#cafd00]"
+        href="{% url 'accounts:workouts' %}"
+      >
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >fitness_center</span
+        >
+        <span class="text-[10px] font-label uppercase">Workouts</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="{% url 'accounts:ai_coach' %}"
+      >
+        <span class="material-symbols-outlined">psychology</span>
+        <span class="text-[10px] font-label uppercase">Coach</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="{% url 'accounts:logout' %}"
+      >
+        <span class="material-symbols-outlined">person</span>
+        <span class="text-[10px] font-label uppercase">Me</span>
+      </a>
+    </nav>
+    <script>
+      (function () {
+        const btn = document.getElementById("start-workout-btn");
+        let active = false;
+        let seconds = 0;
+        let timer = null;
+
+        function formatTime(s) {
+          const m = Math.floor(s / 60);
+          const sec = s % 60;
+          return (m < 10 ? "0" + m : m) + ":" + (sec < 10 ? "0" + sec : sec);
+        }
+
+        btn.addEventListener("click", function () {
+          if (!active) {
+            active = true;
+            seconds = 0;
+            btn.textContent = "Workout Active — " + formatTime(seconds);
+            btn.classList.remove("from-primary", "to-primary-container");
+            btn.classList.add("from-secondary", "to-error");
+            timer = setInterval(function () {
+              seconds++;
+              btn.textContent = "Workout Active — " + formatTime(seconds);
+            }, 1000);
+          } else {
+            active = false;
+            clearInterval(timer);
+            timer = null;
+            const duration = formatTime(seconds);
+            btn.textContent = "Completed — " + duration;
+            btn.classList.remove("from-secondary", "to-error");
+            btn.classList.add("from-primary", "to-primary-container");
+            btn.disabled = true;
+            btn.classList.add("opacity-60", "cursor-not-allowed");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

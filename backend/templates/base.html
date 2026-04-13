@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>{% block title %}KINETIC{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container": "#1a1a1a", "surface-bright": "#2c2c2c",
+            "on-primary": "#516700", "secondary-fixed-dim": "#ffb197",
+            "on-surface-variant": "#adaaaa", "on-tertiary-container": "#5d5000",
+            "on-primary-fixed-variant": "#526900", primary: "#f3ffca",
+            "surface-variant": "#262626", "surface-container-lowest": "#000000",
+            "on-secondary": "#410f00", "secondary-dim": "#ff7441",
+            outline: "#767575", "tertiary-dim": "#edd13a",
+            "inverse-primary": "#516700", "inverse-on-surface": "#565555",
+            tertiary: "#ffeea5", "on-error-container": "#ffd2c8",
+            error: "#ff7351", "on-surface": "#ffffff",
+            "outline-variant": "#484847", "on-secondary-fixed-variant": "#932d00",
+            "secondary-container": "#ab3600", "surface-dim": "#0e0e0e",
+            "surface-tint": "#f3ffca", "primary-container": "#cafd00",
+            "tertiary-container": "#fce047", "surface-container-low": "#131313",
+            "on-tertiary": "#665800", surface: "#0e0e0e", background: "#0e0e0e",
+            "primary-fixed-dim": "#beee00", "on-secondary-container": "#fff6f3",
+            "on-tertiary-fixed": "#483d00", "on-secondary-fixed": "#631b00",
+            "surface-container-highest": "#262626", "surface-container-high": "#20201f",
+            secondary: "#ff7441", "on-tertiary-fixed-variant": "#685900",
+            "primary-fixed": "#cafd00", "on-primary-container": "#4a5e00",
+            "inverse-surface": "#fcf9f8", "on-error": "#450900",
+            "on-primary-fixed": "#3a4a00", "tertiary-fixed-dim": "#edd13a",
+            "error-dim": "#d53d18", "error-container": "#b92902",
+            "secondary-fixed": "#ffc4b1", "tertiary-fixed": "#fce047",
+            "on-background": "#ffffff", "primary-dim": "#beee00",
+          },
+          borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+          fontFamily: { headline: ["Lexend"], body: ["Inter"], label: ["Space Grotesk"] },
+        },
+      },
+    };
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { background-color: #0e0e0e; color: #ffffff; font-family: 'Inter', sans-serif; }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  {% block body %}{% endblock %}
+</body>
+</html>

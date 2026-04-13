@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}KINETIC — Logout{% endblock %}
+
+{% block body %}
+<div class="flex items-center justify-center min-h-screen relative overflow-hidden">
+
+  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[120px]"></div>
+    <div class="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-secondary/5 blur-[100px]"></div>
+  </div>
+
+  <main class="relative z-10 w-full max-w-[440px] px-6 py-12">
+    <div class="flex flex-col items-center mb-10">
+      <a class="text-4xl font-headline font-black italic tracking-tighter text-primary-container mb-2" href="/">KINETIC</a>
+      <p class="font-label text-[10px] uppercase tracking-[0.3em] text-on-surface-variant">The High-Performance Editorial</p>
+    </div>
+
+    <div class="bg-surface-container-low p-8 lg:p-10 rounded-xl shadow-2xl text-center">
+      <div class="mb-8">
+        <span class="material-symbols-outlined text-6xl text-on-surface-variant mb-4 block">logout</span>
+        <h1 class="font-headline text-3xl font-bold tracking-tight mb-3">Terminate Session?</h1>
+        <p class="font-body text-on-surface-variant text-sm">
+          You are currently signed in as <strong class="text-primary">{{ request.user.email }}</strong>.<br/>
+          Are you sure you want to disconnect from KINETIC?
+        </p>
+      </div>
+
+      <form method="POST" action="{% url 'accounts:logout' %}">
+        {% csrf_token %}
+        <button class="w-full bg-gradient-to-br from-primary to-primary-container py-4 rounded-lg text-on-primary-container font-headline font-black uppercase tracking-wider text-sm active:scale-[0.98] transition-transform shadow-[0_10px_20px_-5px_rgba(202,253,0,0.2)] mb-4" type="submit">
+          Disconnect Now
+        </button>
+      </form>
+
+      <a class="block w-full py-4 rounded-lg border border-outline-variant/30 font-headline font-bold uppercase tracking-wider text-sm text-on-surface-variant hover:bg-surface-container-high transition-all" href="/">
+        Stay Connected
+      </a>
+    </div>
+
+    <div class="mt-12 flex justify-center space-x-6 text-[10px] font-label uppercase tracking-widest text-on-surface-variant/40">
+      <a class="hover:text-on-surface transition-colors" href="/">Home</a>
+    </div>
+  </main>
+</div>
+{% endblock %}

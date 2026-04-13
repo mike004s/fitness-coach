@@ -1,0 +1,617 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KINETIC | AI Coach</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#1a1a1a",
+              "on-tertiary-fixed-variant": "#685900",
+              "surface-bright": "#2c2c2c",
+              "surface-variant": "#262626",
+              "primary-dim": "#beee00",
+              "on-secondary-fixed-variant": "#932d00",
+              "on-primary-fixed": "#3a4a00",
+              secondary: "#ff7441",
+              "secondary-container": "#ab3600",
+              "secondary-fixed-dim": "#ffb197",
+              tertiary: "#ffeea5",
+              "inverse-on-surface": "#565555",
+              "on-primary-container": "#4a5e00",
+              "surface-container-low": "#131313",
+              "surface-dim": "#0e0e0e",
+              "on-primary": "#516700",
+              primary: "#f3ffca",
+              "on-error-container": "#ffd2c8",
+              "on-secondary-fixed": "#631b00",
+              "on-tertiary-container": "#5d5000",
+              error: "#ff7351",
+              "on-surface": "#ffffff",
+              "error-dim": "#d53d18",
+              "inverse-primary": "#516700",
+              "tertiary-fixed-dim": "#edd13a",
+              "tertiary-fixed": "#fce047",
+              "secondary-fixed": "#ffc4b1",
+              "primary-container": "#cafd00",
+              "primary-fixed": "#cafd00",
+              "on-surface-variant": "#adaaaa",
+              "outline-variant": "#484847",
+              "on-secondary-container": "#fff6f3",
+              "on-secondary": "#410f00",
+              "surface-container-lowest": "#000000",
+              "secondary-dim": "#ff7441",
+              "tertiary-dim": "#edd13a",
+              "on-background": "#ffffff",
+              outline: "#767575",
+              "on-primary-fixed-variant": "#526900",
+              background: "#0e0e0e",
+              "primary-fixed-dim": "#beee00",
+              "error-container": "#b92902",
+              surface: "#0e0e0e",
+              "surface-tint": "#f3ffca",
+              "on-tertiary-fixed": "#483d00",
+              "tertiary-container": "#fce047",
+              "surface-container-highest": "#262626",
+              "surface-container-high": "#20201f",
+              "inverse-surface": "#fcf9f8",
+              "on-error": "#450900",
+              "on-tertiary": "#665800",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Lexend"],
+              body: ["Inter"],
+              label: ["Space Grotesk"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        background-color: #0e0e0e;
+        color: #ffffff;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0e0e0e;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #262626;
+        border-radius: 10px;
+      }
+      /* Typing indicator animation */
+      .typing-dot {
+        animation: typingBounce 1.4s infinite ease-in-out both;
+      }
+      .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+      .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+      @keyframes typingBounce {
+        0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+        40% { transform: scale(1); opacity: 1; }
+      }
+      /* Markdown-like rendering in chat */
+      .chat-msg strong, .chat-msg b { color: #cafd00; font-weight: 700; }
+      .chat-msg ul, .chat-msg ol { padding-left: 1.2em; margin: 0.5em 0; }
+      .chat-msg li { margin: 0.2em 0; }
+    </style>
+  </head>
+  <body
+    class="font-body selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-4 md:px-8 py-4 h-16 md:h-20"
+    >
+      <div class="flex items-center gap-4 md:gap-8">
+        <!-- Mobile menu toggle -->
+        <button id="sidebarToggle" class="md:hidden text-[#cafd00]">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+        <a
+          class="text-xl md:text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
+          href="{% url 'accounts:home' %}"
+          >KINETIC</a
+        >
+      </div>
+      <div class="flex items-center gap-3 md:gap-6">
+        <!-- Context panel toggle (mobile) -->
+        <button id="contextToggle" class="lg:hidden text-white/60 hover:text-[#cafd00] transition-colors">
+          <span class="material-symbols-outlined text-2xl">analytics</span>
+        </button>
+        <a
+          class="hidden sm:inline-flex bg-[#cafd00] text-[#4a5e00] px-4 md:px-6 py-2 font-['Lexend'] font-bold text-xs md:text-sm uppercase tracking-wider hover:bg-[#f3ffca]/10 transition-colors active:scale-95 transition-transform rounded-lg"
+          href="{% url 'accounts:workouts' %}"
+        >
+          Start Workout
+        </a>
+        <span
+          class="material-symbols-outlined text-[#cafd00] cursor-pointer hidden sm:block"
+          >notifications</span
+        >
+        <a
+          class="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-[#cafd00] block"
+          href="{% url 'accounts:logout' %}"
+        >
+          <img
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3asQ3As1E9QkVdv2_WuTVfy9Nhjvh1o9zsP-TUHj33af1Ma6W3BIjBmtXhOc-rPYryJU_3zYame1BuF_Wxf_Vt0XeMEAmTExr-uzKf2hJ940HOh_WMZemH8yHZizfVSG3ED4KvZ7wQWCM2TDJnZb8848RFXODkR2pPyIAmPfMt2RCxj_IrIb2BolUPX8JC-r5ed6Ej-3oiiovFuR2fzlgNW7MXn0Y8scIFRFpWjEBJw5yW1c3fbi1jqSqUjQwxTThi5DrDxnBYMY"
+            alt="Profile"
+          />
+        </a>
+      </div>
+    </header>
+
+    <!-- Mobile sidebar overlay -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden" onclick="toggleSidebar()"></div>
+
+    <!-- SideNavBar -->
+    <aside
+      id="sidebar"
+      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] flex flex-col pt-20 md:pt-24 pb-8 transition-transform duration-300 -translate-x-full md:translate-x-0 border-r border-white/5 md:border-0"
+    >
+      <div class="px-6 mb-8">
+        <h2 class="font-['Lexend'] font-black text-[#cafd00] text-xl">
+          KINETIC
+        </h2>
+        <p
+          class="font-['Space_Grotesk'] font-medium text-xs tracking-tight text-white/40 uppercase"
+        >
+          Peak Performance
+        </p>
+      </div>
+      <nav class="flex-1 px-4 space-y-2">
+        <a class="flex items-center gap-4 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200 group" href="{% url 'accounts:home' %}">
+          <span class="material-symbols-outlined group-hover:text-white">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200 group" href="{% url 'accounts:workouts' %}">
+          <span class="material-symbols-outlined group-hover:text-white">fitness_center</span>
+          <span>Workouts</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200 group" href="{% url 'accounts:nutrition' %}">
+          <span class="material-symbols-outlined group-hover:text-white">restaurant</span>
+          <span>Nutrition</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200 group" href="{% url 'accounts:metrics' %}">
+          <span class="material-symbols-outlined group-hover:text-white">monitoring</span>
+          <span>Metrics</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-3 text-[#cafd00] border-r-4 border-[#cafd00] bg-gradient-to-r from-[#cafd00]/10 to-transparent font-['Space_Grotesk'] font-medium text-sm tracking-tight" href="{% url 'accounts:ai_coach' %}">
+          <span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1">psychology</span>
+          <span>AI Coach</span>
+        </a>
+      </nav>
+      <div class="px-6 mt-auto">
+        <a href="{% url 'accounts:pro' %}" class="block text-center w-full py-4 bg-surface-container-highest text-primary font-['Space_Grotesk'] font-bold text-xs uppercase tracking-widest rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-all">
+          Upgrade to Pro
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Canvas -->
+    <main class="md:ml-64 pt-16 md:pt-20 h-screen flex flex-col lg:flex-row overflow-hidden">
+      <!-- Chat Interface Section -->
+      <section class="flex-1 flex flex-col bg-surface relative min-w-0">
+        <!-- Chat Header -->
+        <div class="p-4 md:p-8 pb-2 md:pb-4 flex items-center justify-between flex-shrink-0">
+          <div class="flex items-center gap-3 md:gap-4">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-primary-container flex items-center justify-center rounded-xl shadow-[0_0_20px_rgba(202,253,0,0.3)]">
+              <span class="material-symbols-outlined text-on-primary-container text-2xl md:text-3xl" style="font-variation-settings: &quot;FILL&quot; 1">psychology</span>
+            </div>
+            <div>
+              <h1 class="font-headline text-lg md:text-2xl font-bold text-on-surface">
+                KINETIC <span class="text-primary-dim">AI</span>
+              </h1>
+              <p class="font-label text-[10px] md:text-xs text-on-surface-variant flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-primary-dim animate-pulse"></span>
+                SYSTEM ACTIVE
+              </p>
+            </div>
+          </div>
+          <button id="clearChat" class="text-on-surface-variant hover:text-error text-xs font-label uppercase tracking-widest flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-sm">delete_sweep</span>
+            <span class="hidden sm:inline">Clear</span>
+          </button>
+        </div>
+
+        <!-- Messages Area -->
+        <div id="chatMessages" class="flex-1 overflow-y-auto px-4 md:px-8 space-y-6 md:space-y-8 py-4 md:py-6">
+          <!-- Welcome message (inserted by JS on load) -->
+        </div>
+
+        <!-- Input & Suggestions -->
+        <div class="p-4 md:p-8 pt-0 flex-shrink-0">
+          <!-- Quick Suggestions -->
+          <div id="suggestions" class="flex gap-2 md:gap-3 mb-4 md:mb-6 overflow-x-auto pb-2 scrollbar-hide">
+            <button class="suggestion-btn whitespace-nowrap bg-surface-container-highest border-none px-3 md:px-4 py-2 rounded-full font-label text-[10px] md:text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all flex-shrink-0">
+              Recommend a 15-min HIIT
+            </button>
+            <button class="suggestion-btn whitespace-nowrap bg-surface-container-highest border-none px-3 md:px-4 py-2 rounded-full font-label text-[10px] md:text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all flex-shrink-0">
+              Fix my squat form
+            </button>
+            <button class="suggestion-btn whitespace-nowrap bg-surface-container-highest border-none px-3 md:px-4 py-2 rounded-full font-label text-[10px] md:text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all flex-shrink-0">
+              Explain macro tracking
+            </button>
+            <button class="suggestion-btn whitespace-nowrap bg-surface-container-highest border-none px-3 md:px-4 py-2 rounded-full font-label text-[10px] md:text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all flex-shrink-0">
+              What should I eat tonight?
+            </button>
+            <button class="suggestion-btn whitespace-nowrap bg-surface-container-highest border-none px-3 md:px-4 py-2 rounded-full font-label text-[10px] md:text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all flex-shrink-0">
+              Plan a leg day workout
+            </button>
+          </div>
+          <form id="chatForm" class="relative group">
+            <input
+              id="chatInput"
+              class="w-full bg-surface-container-highest border-none rounded-xl py-4 md:py-5 px-4 md:px-6 pr-24 md:pr-28 text-sm md:text-base text-on-surface font-body focus:ring-0 placeholder:text-on-surface-variant transition-all focus:bg-surface-bright"
+              placeholder="Ask Kinetic Coach anything..."
+              type="text"
+              autocomplete="off"
+              maxlength="2000"
+            />
+            <div class="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 md:gap-3">
+              <button type="button" id="voiceBtn" class="text-on-surface-variant hover:text-primary transition-colors hidden sm:block">
+                <span class="material-symbols-outlined">mic</span>
+              </button>
+              <button
+                type="submit"
+                id="sendBtn"
+                class="w-9 h-9 md:w-10 md:h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container hover:scale-105 transition-transform active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                <span class="material-symbols-outlined">send</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Context Panel overlay on mobile -->
+      <div id="contextOverlay" class="fixed inset-0 bg-black/60 z-20 hidden lg:hidden" onclick="toggleContext()"></div>
+
+      <!-- Context Panel (Sidebar) -->
+      <aside
+        id="contextPanel"
+        class="fixed right-0 top-16 md:top-20 bottom-0 w-80 z-20 bg-surface-container-low border-l border-outline-variant/10 p-6 md:p-8 flex flex-col gap-6 md:gap-8 overflow-y-auto transition-transform duration-300 translate-x-full lg:translate-x-0 lg:static lg:z-auto"
+      >
+        <!-- Daily Macros -->
+        <div>
+          <h3 class="font-label text-xs text-on-surface-variant uppercase tracking-widest mb-6">
+            Daily Macros Remaining
+          </h3>
+          <div class="space-y-6">
+            <div class="relative pt-1">
+              <div class="flex mb-2 items-center justify-between">
+                <span class="font-headline font-bold text-sm text-on-surface">Protein</span>
+                <span class="font-label text-xs font-semibold text-primary">12g Left</span>
+              </div>
+              <div class="overflow-hidden h-1.5 mb-4 flex rounded bg-surface-container-highest">
+                <div class="bg-primary" style="width: 92%"></div>
+              </div>
+            </div>
+            <div class="relative pt-1">
+              <div class="flex mb-2 items-center justify-between">
+                <span class="font-headline font-bold text-sm text-on-surface">Carbs</span>
+                <span class="font-label text-xs font-semibold text-secondary">45g Left</span>
+              </div>
+              <div class="overflow-hidden h-1.5 mb-4 flex rounded bg-surface-container-highest">
+                <div class="bg-secondary" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="relative pt-1">
+              <div class="flex mb-2 items-center justify-between">
+                <span class="font-headline font-bold text-sm text-on-surface">Fats</span>
+                <span class="font-label text-xs font-semibold text-on-surface">8g Left</span>
+              </div>
+              <div class="overflow-hidden h-1.5 mb-4 flex rounded bg-surface-container-highest">
+                <div class="bg-on-surface" style="width: 88%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Today's Workout -->
+        <div class="bg-surface-container p-5 md:p-6 rounded-xl">
+          <h3 class="font-label text-xs text-on-surface-variant uppercase tracking-widest mb-4">
+            Today's Protocol
+          </h3>
+          <div class="relative mb-4 group overflow-hidden rounded-lg aspect-video">
+            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUKgenImsrN2ypVaMhLZH2-2rvyfVmLMQzMdgbzH6qhpWljQxNXuphHFM64r8bIqUVcxxSJYReiKm31ds_v9SYeOrC-ng5nysZl6rXkV9Vdc6c8MtYEIAjQlbnFehlXvEdjJi_Sqx5j8dhtVizUikAIfU5dvnzRght5OsE6tJfjwkS_kbpTZesILeSUnSTx6aptDwTnYgLwgIsVdBeDAtpc7N_DAYqdzI4Mea4vvjq_8TY961eAjVLIGcCrz77fk-xRA7ZikxqLQ"
+              alt="Workout"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+              <p class="font-headline font-bold text-white leading-tight">Hypertrophy Upper B</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-sm text-on-surface-variant">
+              <span class="material-symbols-outlined text-sm">schedule</span>
+              <span class="font-label uppercase tracking-tighter">75 Minutes</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-on-surface-variant">
+              <span class="material-symbols-outlined text-sm">local_fire_department</span>
+              <span class="font-label uppercase tracking-tighter">620 Est. Calories</span>
+            </div>
+          </div>
+          <a href="{% url 'accounts:workouts' %}" class="block text-center w-full mt-6 py-3 bg-primary-container text-on-primary-container font-headline font-black text-xs uppercase tracking-widest rounded-lg transition-transform active:scale-95">
+            View Drill List
+          </a>
+        </div>
+        <!-- System Info -->
+        <div class="mt-auto space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-label text-[10px] text-on-surface-variant uppercase">Biometric Sync</span>
+            <span class="font-label text-[10px] text-primary">REAL-TIME</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-label text-[10px] text-on-surface-variant uppercase">Voice Synthesis</span>
+            <span class="font-label text-[10px] text-on-surface-variant">V3.4 (PRO)</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <script>
+    (() => {
+      // ── DOM refs ──────────────────────────────────────────────
+      const chatMessages = document.getElementById('chatMessages');
+      const chatForm     = document.getElementById('chatForm');
+      const chatInput    = document.getElementById('chatInput');
+      const sendBtn      = document.getElementById('sendBtn');
+      const clearBtn     = document.getElementById('clearChat');
+      const sidebar      = document.getElementById('sidebar');
+      const sidebarOv    = document.getElementById('sidebarOverlay');
+      const contextPanel = document.getElementById('contextPanel');
+      const contextOv    = document.getElementById('contextOverlay');
+      const API_URL      = '/api/ai-chat/';
+
+      // ── CSRF token from cookie ────────────────────────────────
+      function getCookie(name) {
+        const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return v ? v.pop() : '';
+      }
+      const csrfToken = getCookie('csrftoken');
+
+      // ── Simple Markdown → HTML ────────────────────────────────
+      function md(text) {
+        return text
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.+?)\*/g, '<em>$1</em>')
+          .replace(/^(\d+)\.\s+(.+)/gm, '<li>$2</li>')
+          .replace(/^[•\-]\s+(.+)/gm, '<li>$1</li>')
+          .replace(/(<li>.*<\/li>)/s, (m) => '<ul class="list-disc">' + m + '</ul>')
+          .replace(/\n{2,}/g, '</p><p>')
+          .replace(/\n/g, '<br>');
+      }
+
+      // ── Append message bubble ─────────────────────────────────
+      function addMessage(role, html, macros) {
+        const wrapper = document.createElement('div');
+
+        if (role === 'user') {
+          wrapper.className = 'flex gap-3 md:gap-4 max-w-2xl ml-auto flex-row-reverse';
+          wrapper.innerHTML = `
+            <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-primary-container flex-shrink-0 flex items-center justify-center">
+              <span class="material-symbols-outlined text-on-primary-container text-lg md:text-xl">person</span>
+            </div>
+            <div class="bg-surface-variant p-4 md:p-6 rounded-xl rounded-tr-none">
+              <p class="text-on-surface leading-relaxed text-sm md:text-base">${html}</p>
+            </div>`;
+        } else {
+          let macroHtml = '';
+          if (macros) {
+            const entries = Object.entries(macros).map(
+              ([k, v]) => `<div class="bg-surface-container-low px-3 md:px-4 py-2 rounded-lg">
+                <span class="font-label text-[10px] text-on-surface-variant block uppercase">${k}</span>
+                <span class="font-headline font-bold text-sm text-primary">${v}</span>
+              </div>`
+            ).join('');
+            macroHtml = `<div class="mt-4 flex flex-wrap gap-3">${entries}</div>`;
+          }
+          wrapper.className = 'flex gap-3 md:gap-4 max-w-2xl';
+          wrapper.innerHTML = `
+            <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary-container text-lg md:text-xl">smart_toy</span>
+            </div>
+            <div class="bg-surface-container p-4 md:p-6 rounded-xl rounded-tl-none border-l-4 border-primary-container">
+              <div class="chat-msg text-on-surface leading-relaxed text-sm md:text-base">${html}</div>
+              ${macroHtml}
+            </div>`;
+        }
+
+        chatMessages.appendChild(wrapper);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // ── Typing indicator ──────────────────────────────────────
+      function showTyping() {
+        const el = document.createElement('div');
+        el.id = 'typing';
+        el.className = 'flex gap-3 md:gap-4 max-w-2xl';
+        el.innerHTML = `
+          <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary-container text-lg md:text-xl">smart_toy</span>
+          </div>
+          <div class="bg-surface-container p-4 md:p-6 rounded-xl rounded-tl-none flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-primary-dim typing-dot"></span>
+            <span class="w-2 h-2 rounded-full bg-primary-dim typing-dot"></span>
+            <span class="w-2 h-2 rounded-full bg-primary-dim typing-dot"></span>
+          </div>`;
+        chatMessages.appendChild(el);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function hideTyping() {
+        const el = document.getElementById('typing');
+        if (el) el.remove();
+      }
+
+      // ── Send message ──────────────────────────────────────────
+      let sending = false;
+
+      async function sendMessage(text) {
+        if (sending || !text.trim()) return;
+        sending = true;
+        sendBtn.disabled = true;
+
+        // Add user bubble
+        const escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        addMessage('user', escaped);
+        chatInput.value = '';
+
+        showTyping();
+
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify({ message: text }),
+          });
+
+          hideTyping();
+
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            addMessage('coach', `<span class="text-error">Error: ${err.error || 'Something went wrong. Try again.'}</span>`);
+          } else {
+            const data = await res.json();
+            addMessage('coach', md(data.reply), data.macros);
+          }
+        } catch (e) {
+          hideTyping();
+          addMessage('coach', '<span class="text-error">Network error — check your connection and try again.</span>');
+        }
+
+        sending = false;
+        sendBtn.disabled = false;
+        chatInput.focus();
+      }
+
+      // ── Events ────────────────────────────────────────────────
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        sendMessage(chatInput.value);
+      });
+
+      // Enter key (shift+enter for newline in future textarea upgrade)
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage(chatInput.value);
+        }
+      });
+
+      // Suggestion buttons
+      document.querySelectorAll('.suggestion-btn').forEach((btn) => {
+        btn.addEventListener('click', () => sendMessage(btn.textContent.trim()));
+      });
+
+      // Clear chat
+      clearBtn.addEventListener('click', () => {
+        chatMessages.innerHTML = '';
+        addWelcomeMessage();
+      });
+
+      // ── Sidebar toggle (mobile) ──────────────────────────────
+      window.toggleSidebar = function () {
+        sidebar.classList.toggle('-translate-x-full');
+        sidebarOv.classList.toggle('hidden');
+      };
+      document.getElementById('sidebarToggle').addEventListener('click', toggleSidebar);
+
+      // ── Context panel toggle (mobile) ────────────────────────
+      window.toggleContext = function () {
+        contextPanel.classList.toggle('translate-x-full');
+        contextOv.classList.toggle('hidden');
+      };
+      document.getElementById('contextToggle').addEventListener('click', toggleContext);
+
+      // Close panels on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
+          if (!contextPanel.classList.contains('translate-x-full') && window.innerWidth < 1024) toggleContext();
+        }
+      });
+
+      // ── Welcome message ──────────────────────────────────────
+      function addWelcomeMessage() {
+        addMessage('coach',
+          "Welcome back. I've analyzed your biometric data from this morning. " +
+          "You're recovered and ready for a peak intensity session.<br><br>" +
+          "How can I assist your performance today? Try one of the suggestions below, or ask me anything about " +
+          "<strong>workouts</strong>, <strong>nutrition</strong>, <strong>form</strong>, or <strong>recovery</strong>."
+        );
+      }
+      addWelcomeMessage();
+      chatInput.focus();
+
+      // ── Voice input (Web Speech API if available) ────────────
+      const voiceBtn = document.getElementById('voiceBtn');
+      if (voiceBtn && 'webkitSpeechRecognition' in window) {
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+        let listening = false;
+
+        voiceBtn.addEventListener('click', () => {
+          if (listening) {
+            recognition.stop();
+          } else {
+            recognition.start();
+            voiceBtn.querySelector('.material-symbols-outlined').textContent = 'graphic_eq';
+            voiceBtn.classList.add('text-error');
+          }
+          listening = !listening;
+        });
+
+        recognition.onresult = (e) => {
+          const transcript = e.results[0][0].transcript;
+          chatInput.value = transcript;
+          chatInput.focus();
+        };
+
+        recognition.onend = () => {
+          voiceBtn.querySelector('.material-symbols-outlined').textContent = 'mic';
+          voiceBtn.classList.remove('text-error');
+          listening = false;
+        };
+      } else if (voiceBtn) {
+        voiceBtn.style.display = 'none';
+      }
+    })();
+    </script>
+  </body>
+</html>

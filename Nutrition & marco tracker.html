@@ -1,0 +1,750 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KINETIC - Nutrition &amp; Macro Tracker</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;family=Space_Grotesk:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#1a1a1a",
+              "on-tertiary-fixed-variant": "#685900",
+              "surface-bright": "#2c2c2c",
+              "surface-variant": "#262626",
+              "primary-dim": "#beee00",
+              "on-secondary-fixed-variant": "#932d00",
+              "on-primary-fixed": "#3a4a00",
+              secondary: "#ff7441",
+              "secondary-container": "#ab3600",
+              "secondary-fixed-dim": "#ffb197",
+              tertiary: "#ffeea5",
+              "inverse-on-surface": "#565555",
+              "on-primary-container": "#4a5e00",
+              "surface-container-low": "#131313",
+              "surface-dim": "#0e0e0e",
+              "on-primary": "#516700",
+              primary: "#f3ffca",
+              "on-error-container": "#ffd2c8",
+              "on-secondary-fixed": "#631b00",
+              "on-tertiary-container": "#5d5000",
+              error: "#ff7351",
+              "on-surface": "#ffffff",
+              "error-dim": "#d53d18",
+              "inverse-primary": "#516700",
+              "tertiary-fixed-dim": "#edd13a",
+              "tertiary-fixed": "#fce047",
+              "secondary-fixed": "#ffc4b1",
+              "primary-container": "#cafd00",
+              "primary-fixed": "#cafd00",
+              "on-surface-variant": "#adaaaa",
+              "outline-variant": "#484847",
+              "on-secondary-container": "#fff6f3",
+              "on-secondary": "#410f00",
+              "surface-container-lowest": "#000000",
+              "secondary-dim": "#ff7441",
+              "tertiary-dim": "#edd13a",
+              "on-background": "#ffffff",
+              outline: "#767575",
+              "on-primary-fixed-variant": "#526900",
+              background: "#0e0e0e",
+              "primary-fixed-dim": "#beee00",
+              "error-container": "#b92902",
+              surface: "#0e0e0e",
+              "surface-tint": "#f3ffca",
+              "on-tertiary-fixed": "#483d00",
+              "tertiary-container": "#fce047",
+              "surface-container-highest": "#262626",
+              "surface-container-high": "#20201f",
+              "inverse-surface": "#fcf9f8",
+              "on-error": "#450900",
+              "on-tertiary": "#665800",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Lexend"],
+              body: ["Inter"],
+              label: ["Space Grotesk"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0e0e0e;
+        color: #ffffff;
+      }
+      .lexend {
+        font-family: "Lexend", sans-serif;
+      }
+      .space-grotesk {
+        font-family: "Space Grotesk", sans-serif;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-8 py-4 w-full h-20"
+    >
+      <div class="flex items-center gap-4">
+        <a
+          class="font-['Lexend'] uppercase tracking-widest text-2xl font-black text-[#cafd00]"
+          href="Index.html"
+          >KINETIC</a
+        >
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="hidden md:flex items-center gap-8">
+          <a
+            class="text-white/60 font-['Lexend'] uppercase tracking-tighter hover:bg-[#f3ffca]/10 transition-colors px-3 py-1 rounded cursor-pointer"
+            href="Index.html"
+            >Dashboard</a
+          >
+          <a
+            class="text-white/60 font-['Lexend'] uppercase tracking-tighter hover:bg-[#f3ffca]/10 transition-colors px-3 py-1 rounded cursor-pointer"
+            href="smartworkoutlog.html"
+            >Workouts</a
+          >
+          <a
+            class="text-[#cafd00] font-bold font-['Lexend'] uppercase tracking-tighter transition-colors px-3 py-1 rounded cursor-pointer"
+            href="Nutrition & marco tracker.html"
+            >Nutrition</a
+          >
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="material-symbols-outlined text-white/60 hover:text-white transition-colors"
+          >
+            notifications
+          </button>
+          <a
+            class="bg-[#cafd00] text-[#4a5e00] font-['Lexend'] font-bold uppercase tracking-tighter px-6 py-2 rounded-lg active:scale-95 transition-transform"
+            href="smartworkoutlog.html"
+            >Start Workout</a
+          >
+          <a href="logout.html">
+            <img
+              alt="User fitness profile"
+              class="w-10 h-10 rounded-full object-cover border-2 border-primary-container"
+              data-alt="Close up of a professional athlete with intense focus, sweat on brow, dramatic high-contrast studio lighting on dark background"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_TXK19Wh--5V9NeYmoPzqKD8Dok40_CsQqh4EJm4dcCBSyN-slSqVNfvaZImHiRTRlQ3riXWO-FZRKG-YSiQ09FwpVnaeEcHG9Dz0DUI3eYkagQ6BzEWasbV4SRR5Ac4W7cC12Wg3_QRI3uZfAZObon4y6TiljhehHgLOpknRj0MCEc8VjKvXlAcsutwwGexvWqBcMgAHUceklxe2ltbjXBrY1eczZAX69VFWv5JzNtTPXuPFIiD0Fe5iW91MV1Oa0cNo3P3U7W4"
+            />
+          </a>
+        </div>
+      </div>
+    </header>
+    <!-- SideNavBar (Desktop) -->
+    <nav
+      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] hidden md:flex flex-col h-full pt-24 pb-8"
+    >
+      <div class="px-6 mb-12">
+        <div class="flex items-center gap-3 mb-2">
+          <div
+            class="w-10 h-10 bg-surface-container-highest rounded-full flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-primary-fixed"
+              >fitness_center</span
+            >
+          </div>
+          <div>
+            <h3
+              class="font-['Lexend'] font-black text-[#cafd00] text-lg leading-none"
+            >
+              KINETIC
+            </h3>
+            <p
+              class="font-['Space_Grotesk'] font-medium text-xs text-white/40 tracking-tight"
+            >
+              Peak Performance
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col flex-grow">
+        <a
+          class="flex items-center gap-4 px-8 py-4 text-white/40 hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
+          href="Index.html"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span
+            class="font-['Space_Grotesk'] font-medium text-sm tracking-tight"
+            >Dashboard</span
+          >
+        </a>
+        <a
+          class="flex items-center gap-4 px-8 py-4 text-white/40 hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
+          href="smartworkoutlog.html"
+        >
+          <span class="material-symbols-outlined">fitness_center</span>
+          <span
+            class="font-['Space_Grotesk'] font-medium text-sm tracking-tight"
+            >Workouts</span
+          >
+        </a>
+        <a
+          class="flex items-center gap-4 px-8 py-4 text-[#cafd00] border-r-4 border-[#cafd00] bg-gradient-to-r from-[#cafd00]/10 to-transparent transition-all hover:translate-x-1 duration-200"
+          href="Nutrition & marco tracker.html"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >restaurant</span
+          >
+          <span
+            class="font-['Space_Grotesk'] font-medium text-sm tracking-tight"
+            >Nutrition</span
+          >
+        </a>
+        <a
+          class="flex items-center gap-4 px-8 py-4 text-white/40 hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
+          href="body metrixs.html"
+        >
+          <span class="material-symbols-outlined">monitoring</span>
+          <span
+            class="font-['Space_Grotesk'] font-medium text-sm tracking-tight"
+            >Metrics</span
+          >
+        </a>
+        <a
+          class="flex items-center gap-4 px-8 py-4 text-white/40 hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
+          href="Ai fitness coach.html"
+        >
+          <span class="material-symbols-outlined">psychology</span>
+          <span
+            class="font-['Space_Grotesk'] font-medium text-sm tracking-tight"
+            >AI Coach</span
+          >
+        </a>
+      </div>
+      <div class="px-6">
+        <a
+          href="pro.html"
+          class="block text-center w-full bg-surface-container-highest text-primary-container font-['Lexend'] font-bold uppercase tracking-widest text-xs py-4 rounded-xl hover:bg-surface-bright transition-colors"
+        >
+          Upgrade to Pro
+        </a>
+      </div>
+    </nav>
+    <!-- Main Content -->
+    <main class="md:ml-64 pt-24 min-h-screen px-4 md:px-12 pb-24">
+      <!-- Header Section -->
+      <div
+        class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8"
+      >
+        <div class="space-y-2">
+          <h1
+            class="lexend text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none"
+          >
+            Nutrition <br /><span class="text-primary-container"
+              >Intelligence</span
+            >
+          </h1>
+          <p
+            class="space-grotesk text-on-surface-variant font-medium tracking-tight"
+          >
+            Precision fueling for high-velocity output.
+          </p>
+        </div>
+        <div class="flex gap-4 w-full md:w-auto">
+          <div class="relative flex-grow md:w-80">
+            <span
+              class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant"
+              >search</span
+            >
+            <input
+              class="w-full bg-surface-container-highest border-none rounded-xl pl-12 pr-4 py-4 focus:ring-2 focus:ring-primary-container text-sm space-grotesk"
+              placeholder="Search Nigerian Food Database..."
+              type="text"
+            />
+          </div>
+          <button
+            class="bg-surface-container-highest flex items-center gap-2 px-6 py-4 rounded-xl hover:bg-surface-bright transition-colors group"
+          >
+            <span class="material-symbols-outlined text-primary"
+              >barcode_scanner</span
+            >
+            <span
+              class="space-grotesk font-bold text-xs uppercase tracking-widest"
+              >Scan</span
+            >
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Daily Summary: Large Calorie Counter -->
+        <section
+          class="lg:col-span-8 bg-surface-container-low p-8 rounded-xl relative overflow-hidden flex flex-col md:flex-row gap-8 items-center"
+        >
+          <!-- Background visual element -->
+          <div
+            class="absolute right-0 top-0 w-1/3 h-full opacity-10 pointer-events-none"
+          >
+            <img
+              class="w-full h-full object-cover"
+              data-alt="Fresh vibrant ingredients like leafy greens, avocados and healthy proteins on a dark slate surface, moody lighting"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuChH1gDR5mtcbi_xZy4IsT28Ck98CKSbEIeImBOFLvNEuJ93sDBPIg5vG28Qvl9KbjtyTT9RAXSY72Bn6FdDDIyRiSAMvdEyvoNI3SUZMvDkWGj2LOqEqtVX_ky_oRS_v85H4Qq3zfmlrEqXLHyJrkjLvmb80qT0bOSY3I8FkCO740XLV_jfayOCUuj3vD4fALEhCIcFLF164x-bxEVRF3zyJn7mG5r8q-BMJKYHcK6JDJNEsIMSm1D_9z_q0GDdEOY8rtF6eJ1NKI"
+            />
+          </div>
+          <div class="flex-shrink-0 relative">
+            <svg class="w-56 h-56 -rotate-90">
+              <circle
+                class="text-surface-variant"
+                cx="112"
+                cy="112"
+                fill="transparent"
+                r="100"
+                stroke="currentColor"
+                stroke-width="12"
+              ></circle>
+              <circle
+                class="text-primary-container"
+                cx="112"
+                cy="112"
+                fill="transparent"
+                r="100"
+                stroke="currentColor"
+                stroke-dasharray="628"
+                stroke-dashoffset="150"
+                stroke-width="12"
+              ></circle>
+            </svg>
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center rotate-90 text-center"
+            >
+              <span class="lexend text-5xl font-black leading-none">1,840</span>
+              <span
+                class="space-grotesk text-[10px] uppercase font-bold text-on-surface-variant tracking-widest"
+                >Kcal Left</span
+              >
+            </div>
+          </div>
+          <div class="flex-grow grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
+            <div class="flex flex-col gap-1">
+              <span
+                class="space-grotesk text-[10px] uppercase font-bold text-on-surface-variant tracking-widest"
+                >Daily Goal</span
+              >
+              <span class="lexend text-2xl font-bold">2,600</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span
+                class="space-grotesk text-[10px] uppercase font-bold text-on-surface-variant tracking-widest"
+                >Food Intake</span
+              >
+              <span class="lexend text-2xl font-bold text-secondary"
+                >1,120</span
+              >
+            </div>
+            <div class="flex flex-col gap-1">
+              <span
+                class="space-grotesk text-[10px] uppercase font-bold text-on-surface-variant tracking-widest"
+                >Exercise</span
+              >
+              <span class="lexend text-2xl font-bold text-primary-container"
+                >+360</span
+              >
+            </div>
+            <!-- Formula visualization -->
+            <div
+              class="col-span-full pt-4 border-t border-outline-variant/20 flex items-center justify-between"
+            >
+              <p
+                class="space-grotesk text-[11px] text-on-surface-variant italic"
+              >
+                Calculation: Goal - Food + Exercise = Remaining
+              </p>
+            </div>
+          </div>
+        </section>
+        <!-- Macro Bars -->
+        <section
+          class="lg:col-span-4 bg-surface-container p-8 rounded-xl flex flex-col justify-between"
+        >
+          <h3
+            class="space-grotesk text-[12px] uppercase font-black tracking-[0.2em] mb-6 flex items-center gap-2"
+          >
+            <span class="w-2 h-2 rounded-full bg-primary-container"></span>
+            Macro Balance
+          </h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between items-end mb-2">
+                <span class="lexend font-bold text-sm">PROTEIN</span>
+                <span class="space-grotesk text-xs text-on-surface-variant"
+                  >112g / 180g</span
+                >
+              </div>
+              <div class="h-2 bg-surface-variant rounded-full overflow-hidden">
+                <div class="h-full bg-primary-container w-[62%]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between items-end mb-2">
+                <span class="lexend font-bold text-sm text-secondary"
+                  >CARBS</span
+                >
+                <span class="space-grotesk text-xs text-on-surface-variant"
+                  >145g / 250g</span
+                >
+              </div>
+              <div class="h-2 bg-surface-variant rounded-full overflow-hidden">
+                <div class="h-full bg-secondary w-[58%]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between items-end mb-2">
+                <span class="lexend font-bold text-sm text-tertiary">FATS</span>
+                <span class="space-grotesk text-xs text-on-surface-variant"
+                  >42g / 70g</span
+                >
+              </div>
+              <div class="h-2 bg-surface-variant rounded-full overflow-hidden">
+                <div class="h-full bg-tertiary w-[60%]"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 pt-6 border-t border-outline-variant/10">
+            <p class="text-[11px] text-on-surface-variant leading-relaxed">
+              System tracking optimal ketosis windows. Protein target is high to
+              maintain lean mass during metabolic phases.
+            </p>
+          </div>
+        </section>
+        <!-- Food Log: Nigerian Database Integration -->
+        <section class="lg:col-span-12 space-y-6">
+          <div class="flex justify-between items-center px-2">
+            <h2 class="lexend text-2xl font-black uppercase tracking-tight">
+              Fuel Log <span class="text-white/20">Today</span>
+            </h2>
+            <button
+              class="text-primary-container space-grotesk text-xs font-bold uppercase tracking-widest flex items-center gap-1 hover:underline"
+            >
+              <span class="material-symbols-outlined text-sm">history</span> Log
+              History
+            </button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Breakfast -->
+            <div
+              class="bg-surface-container-low rounded-xl overflow-hidden group"
+            >
+              <div
+                class="bg-surface-container p-5 flex justify-between items-center"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary-container"
+                    >wb_twilight</span
+                  >
+                  <span class="lexend font-bold text-sm">BREAKFAST</span>
+                </div>
+                <span class="space-grotesk text-xs text-on-surface-variant"
+                  >450 Kcal</span
+                >
+              </div>
+              <div class="p-4 space-y-3">
+                <div
+                  class="flex justify-between items-center group/item hover:bg-surface-variant/30 p-2 rounded transition-colors"
+                >
+                  <div class="flex flex-col">
+                    <span class="space-grotesk font-bold text-sm"
+                      >Oatmeal with Almonds</span
+                    >
+                    <span
+                      class="text-[10px] text-on-surface-variant uppercase tracking-wider"
+                      >1 Bowl (300g)</span
+                    >
+                  </div>
+                  <span class="lexend text-sm">320</span>
+                </div>
+                <div
+                  class="flex justify-between items-center group/item hover:bg-surface-variant/30 p-2 rounded transition-colors"
+                >
+                  <div class="flex flex-col">
+                    <span class="space-grotesk font-bold text-sm"
+                      >Protein Shake (Vanilla)</span
+                    >
+                    <span
+                      class="text-[10px] text-on-surface-variant uppercase tracking-wider"
+                      >1 Scoop</span
+                    >
+                  </div>
+                  <span class="lexend text-sm">130</span>
+                </div>
+                <button
+                  class="w-full mt-2 py-3 border border-dashed border-outline-variant/30 rounded-lg text-on-surface-variant space-grotesk text-[10px] uppercase font-bold tracking-[0.2em] hover:border-primary-container hover:text-primary-container transition-all"
+                >
+                  + Add Breakfast Item
+                </button>
+              </div>
+            </div>
+            <!-- Lunch - Nigerian Integration Focus -->
+            <div class="bg-surface-container-low rounded-xl overflow-hidden">
+              <div
+                class="bg-surface-container p-5 flex justify-between items-center border-l-4 border-primary-container"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary-container"
+                    >light_mode</span
+                  >
+                  <span class="lexend font-bold text-sm">LUNCH</span>
+                </div>
+                <span
+                  class="space-grotesk text-xs text-primary-container font-bold"
+                  >670 Kcal</span
+                >
+              </div>
+              <div class="p-4 space-y-3">
+                <!-- Nigerian Database Item 1 -->
+                <div class="flex justify-between items-center p-2">
+                  <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                      <span class="space-grotesk font-bold text-sm"
+                        >Jollof Rice</span
+                      >
+                      <span
+                        class="bg-primary-container/10 text-primary-container text-[8px] px-1.5 py-0.5 rounded uppercase font-black"
+                        >Native</span
+                      >
+                    </div>
+                    <span
+                      class="text-[10px] text-on-surface-variant uppercase tracking-wider"
+                      >1 plate (Standard)</span
+                    >
+                  </div>
+                  <span class="lexend text-sm">410</span>
+                </div>
+                <!-- Nigerian Database Item 2 -->
+                <div class="flex justify-between items-center p-2">
+                  <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                      <span class="space-grotesk font-bold text-sm">Suya</span>
+                      <span
+                        class="bg-primary-container/10 text-primary-container text-[8px] px-1.5 py-0.5 rounded uppercase font-black"
+                        >Native</span
+                      >
+                    </div>
+                    <span
+                      class="text-[10px] text-on-surface-variant uppercase tracking-wider"
+                      >200g (Beef)</span
+                    >
+                  </div>
+                  <span class="lexend text-sm">260</span>
+                </div>
+                <button
+                  class="w-full mt-2 py-3 border border-dashed border-outline-variant/30 rounded-lg text-on-surface-variant space-grotesk text-[10px] uppercase font-bold tracking-[0.2em] hover:border-primary-container hover:text-primary-container transition-all"
+                >
+                  + Add Lunch Item
+                </button>
+              </div>
+            </div>
+            <!-- Dinner -->
+            <div class="bg-surface-container-low rounded-xl overflow-hidden">
+              <div
+                class="bg-surface-container p-5 flex justify-between items-center"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary-container"
+                    >nights_stay</span
+                  >
+                  <span class="lexend font-bold text-sm">DINNER</span>
+                </div>
+                <span class="space-grotesk text-xs text-on-surface-variant"
+                  >0 Kcal</span
+                >
+              </div>
+              <div class="p-4 space-y-3">
+                <!-- Empty State Logged for Dynamic Feel -->
+                <div
+                  class="py-8 flex flex-col items-center justify-center opacity-40"
+                >
+                  <span class="material-symbols-outlined text-4xl mb-2"
+                    >restaurant_menu</span
+                  >
+                  <p class="space-grotesk text-xs font-medium italic">
+                    No items logged yet for Dinner.
+                  </p>
+                  <p class="text-[10px] mt-1">
+                    Suggested: Pounded Yam &amp; Egusi Soup (540 kcal)
+                  </p>
+                </div>
+                <button
+                  class="w-full py-3 border border-dashed border-outline-variant/30 rounded-lg text-on-surface-variant space-grotesk text-[10px] uppercase font-bold tracking-[0.2em] hover:border-primary-container hover:text-primary-container transition-all"
+                >
+                  + Add Dinner Item
+                </button>
+              </div>
+            </div>
+            <!-- Snacks -->
+            <div class="bg-surface-container-low rounded-xl overflow-hidden">
+              <div
+                class="bg-surface-container p-5 flex justify-between items-center"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary-container"
+                    >cookie</span
+                  >
+                  <span class="lexend font-bold text-sm">SNACKS</span>
+                </div>
+                <span class="space-grotesk text-xs text-on-surface-variant"
+                  >120 Kcal</span
+                >
+              </div>
+              <div class="p-4 space-y-3">
+                <div class="flex justify-between items-center p-2">
+                  <div class="flex flex-col">
+                    <span class="space-grotesk font-bold text-sm"
+                      >Roasted Groundnuts</span
+                    >
+                    <span
+                      class="text-[10px] text-on-surface-variant uppercase tracking-wider"
+                      >Small Handful (30g)</span
+                    >
+                  </div>
+                  <span class="lexend text-sm">120</span>
+                </div>
+                <button
+                  class="w-full mt-2 py-3 border border-dashed border-outline-variant/30 rounded-lg text-on-surface-variant space-grotesk text-[10px] uppercase font-bold tracking-[0.2em] hover:border-primary-container hover:text-primary-container transition-all"
+                >
+                  + Add Snack Item
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- Nigerian Food Database Floating Feature -->
+      <div
+        class="mt-12 bg-gradient-to-br from-primary-container/20 to-transparent p-1 rounded-2xl"
+      >
+        <div
+          class="bg-[#0e0e0e] rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8"
+        >
+          <div class="w-full md:w-1/3">
+            <img
+              class="w-full h-48 object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer"
+              data-alt="Gourmet presentation of traditional West African food like Jollof rice and plantain, warm lighting, high-end culinary photography"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4SFgUijudY4L28zyzV6EXpXysH3ZsvebgeZt0lrjCjmJExpaWt4WEqXYQIMU9vcEaLbt9O4CG1_Fr6pSbD90Zb86fLvBru72WyyXAWOzdcu7QiMctajJjXqsV3-8G9p8dXVCM-gbDGM_y93CNcJvfe-83-NAa-2C8SLsm9kHDNFnYOGLGhr0CYKGeY5dptGWy6jjABB2uAVkTgGdXLhTiIQ8OlCzW1eN6Qt0IyEdcrQkAxTsDxUo4k1imzolwtBss4BU3P5HuHr0"
+            />
+          </div>
+          <div class="flex-grow space-y-4">
+            <div class="flex items-center gap-3">
+              <span
+                class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded text-[10px] font-black uppercase lexend"
+                >Exclusive</span
+              >
+              <h4
+                class="lexend text-2xl font-black uppercase tracking-tight italic"
+              >
+                Nigerian Database Pro
+              </h4>
+            </div>
+            <p class="body-md text-on-surface-variant max-w-xl">
+              Optimized tracking for 500+ local West African delicacies. From
+              <span class="text-white font-bold">Pounded Yam &amp; Egusi</span>
+              to <span class="text-white font-bold">Akara</span>, our AI
+              precisely calculates macro ratios based on traditional preparation
+              methods.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="space-grotesk text-[10px] bg-surface-variant px-3 py-1 rounded-full text-white/60"
+                >Amala &amp; Abula</span
+              >
+              <span
+                class="space-grotesk text-[10px] bg-surface-variant px-3 py-1 rounded-full text-white/60"
+                >Fried Plantain (Dodo)</span
+              >
+              <span
+                class="space-grotesk text-[10px] bg-surface-variant px-3 py-1 rounded-full text-white/60"
+                >Moin Moin</span
+              >
+              <span
+                class="space-grotesk text-[10px] bg-surface-variant px-3 py-1 rounded-full text-white/60"
+                >Pepper Soup</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Mobile BottomNavBar -->
+    <div
+      class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container border-t border-outline-variant/10 flex justify-around items-center h-16 z-50"
+    >
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="Index.html"
+      >
+        <span class="material-symbols-outlined text-2xl">dashboard</span>
+        <span class="space-grotesk text-[10px] font-bold">Home</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="smartworkoutlog.html"
+      >
+        <span class="material-symbols-outlined text-2xl">fitness_center</span>
+        <span class="space-grotesk text-[10px] font-bold">Workout</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-primary-container"
+        href="Nutrition & marco tracker.html"
+      >
+        <span
+          class="material-symbols-outlined text-2xl"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >restaurant</span
+        >
+        <span class="space-grotesk text-[10px] font-bold">Fuel</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="Ai fitness coach.html"
+      >
+        <span class="material-symbols-outlined text-2xl">psychology</span>
+        <span class="space-grotesk text-[10px] font-bold">AI</span>
+      </a>
+    </div>
+    <!-- Floating Action Button (FAB) - Contextual for Home/Nutrition Only -->
+    <button
+      class="fixed bottom-24 right-8 w-16 h-16 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center shadow-2xl active:scale-90 transition-transform z-40 group"
+    >
+      <span
+        class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform duration-300"
+        >add</span
+      >
+    </button>
+  </body>
+</html>

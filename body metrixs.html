@@ -1,0 +1,878 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KINETIC | Body Metrics &amp; Progress</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#1a1a1a",
+              "on-tertiary-fixed-variant": "#685900",
+              "surface-bright": "#2c2c2c",
+              "surface-variant": "#262626",
+              "primary-dim": "#beee00",
+              "on-secondary-fixed-variant": "#932d00",
+              "on-primary-fixed": "#3a4a00",
+              secondary: "#ff7441",
+              "secondary-container": "#ab3600",
+              "secondary-fixed-dim": "#ffb197",
+              tertiary: "#ffeea5",
+              "inverse-on-surface": "#565555",
+              "on-primary-container": "#4a5e00",
+              "surface-container-low": "#131313",
+              "surface-dim": "#0e0e0e",
+              "on-primary": "#516700",
+              primary: "#f3ffca",
+              "on-error-container": "#ffd2c8",
+              "on-secondary-fixed": "#631b00",
+              "on-tertiary-container": "#5d5000",
+              error: "#ff7351",
+              "on-surface": "#ffffff",
+              "error-dim": "#d53d18",
+              "inverse-primary": "#516700",
+              "tertiary-fixed-dim": "#edd13a",
+              "tertiary-fixed": "#fce047",
+              "secondary-fixed": "#ffc4b1",
+              "primary-container": "#cafd00",
+              "primary-fixed": "#cafd00",
+              "on-surface-variant": "#adaaaa",
+              "outline-variant": "#484847",
+              "on-secondary-container": "#fff6f3",
+              "on-secondary": "#410f00",
+              "surface-container-lowest": "#000000",
+              "secondary-dim": "#ff7441",
+              "tertiary-dim": "#edd13a",
+              "on-background": "#ffffff",
+              outline: "#767575",
+              "on-primary-fixed-variant": "#526900",
+              background: "#0e0e0e",
+              "primary-fixed-dim": "#beee00",
+              "error-container": "#b92902",
+              surface: "#0e0e0e",
+              "surface-tint": "#f3ffca",
+              "on-tertiary-fixed": "#483d00",
+              "tertiary-container": "#fce047",
+              "surface-container-highest": "#262626",
+              "surface-container-high": "#20201f",
+              "inverse-surface": "#fcf9f8",
+              "on-error": "#450900",
+              "on-tertiary": "#665800",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Lexend"],
+              body: ["Inter"],
+              label: ["Space Grotesk"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-headline {
+        font-family: "Lexend", sans-serif;
+      }
+      .font-label {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      ::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0e0e0e;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #262626;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #cafd00;
+      }
+      .kinetic-glass {
+        background: rgba(38, 38, 38, 0.6);
+        backdrop-filter: blur(24px);
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface">
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 w-full z-50 bg-[#0e0e0e] flex justify-between items-center px-8 py-4 w-full h-20"
+    >
+      <div class="flex items-center gap-4">
+        <a
+          class="text-2xl font-black text-[#cafd00] tracking-widest font-['Lexend'] uppercase tracking-tighter"
+          href="Index.html"
+          >KINETIC</a
+        >
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <nav class="flex gap-6 text-sm font-label uppercase tracking-widest">
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="Index.html"
+            >Dashboard</a
+          >
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="smartworkoutlog.html"
+            >Workouts</a
+          >
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="Nutrition & marco tracker.html"
+            >Nutrition</a
+          >
+          <a class="text-[#cafd00] font-bold" href="body metrixs.html"
+            >Metrics</a
+          >
+          <a
+            class="text-white/40 hover:text-white transition-all"
+            href="Ai fitness coach.html"
+            >AI Coach</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <button
+            class="material-symbols-outlined text-white/60 hover:bg-[#f3ffca]/10 p-2 rounded-full transition-colors"
+          >
+            notifications
+          </button>
+          <a
+            class="bg-[#cafd00] text-[#4a5e00] px-6 py-2 font-label font-bold text-xs uppercase tracking-tighter rounded-sm active:scale-95 transition-transform"
+            href="smartworkoutlog.html"
+            >Start Workout</a
+          >
+          <a href="logout.html">
+            <img
+              alt="User fitness profile"
+              class="w-10 h-10 rounded-full object-cover border border-[#cafd00]/20"
+              data-alt="close-up portrait of a determined athlete with subtle sweat, high contrast studio lighting, dark background"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMPMazJsG1I2WuJK35qsHzAcwEOOJwmLxC10MSU5AB2KoW2VjjZlxghISICH2itQralcHsSQj9yaFomQBJ5Wyzw2AciMVkWJuSSzoZ23EgbLkRU0ENtFnUsAdi6UhPm-YOh8S8EESc-yQ5tkHC1gnTSvySCM3fmsR7XLAXmIdRDGUldMelnjuEzESlSkvEpQF90FOVZoQHujoV1rJiAZwovxlvxcfE-GAxfYnS9QRpFwcsnP4_HCKigGAI32e0JJp8au5d-eoPRCY"
+            />
+          </a>
+        </div>
+      </div>
+      <button class="md:hidden material-symbols-outlined text-[#cafd00]">
+        menu
+      </button>
+    </header>
+    <!-- SideNavBar -->
+    <aside
+      class="fixed left-0 top-0 h-full w-64 z-40 bg-[#0e0e0e] hidden md:flex flex-col h-full pt-24 pb-8 border-r border-white/5"
+    >
+      <div class="px-8 mb-10">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center"
+          >
+            <span
+              class="material-symbols-outlined text-[#cafd00]"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >bolt</span
+            >
+          </div>
+          <div>
+            <h3
+              class="font-headline font-black text-[#cafd00] text-sm tracking-tight"
+            >
+              KINETIC
+            </h3>
+            <p
+              class="font-label text-[10px] text-white/40 uppercase tracking-widest"
+            >
+              Peak Performance
+            </p>
+          </div>
+        </div>
+      </div>
+      <nav class="flex-1 flex flex-col px-4 gap-2">
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
+          href="Index.html"
+        >
+          <span class="material-symbols-outlined">dashboard</span> Dashboard
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
+          href="smartworkoutlog.html"
+        >
+          <span class="material-symbols-outlined">fitness_center</span> Workouts
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
+          href="Nutrition & marco tracker.html"
+        >
+          <span class="material-symbols-outlined">restaurant</span> Nutrition
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-[#cafd00] border-r-4 border-[#cafd00] bg-gradient-to-r from-[#cafd00]/10 to-transparent font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:translate-x-1 duration-200"
+          href="body metrixs.html"
+        >
+          <span class="material-symbols-outlined">monitoring</span> Metrics
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-white/40 font-['Space_Grotesk'] font-medium text-sm tracking-tight hover:text-white hover:bg-white/5 transition-all hover:translate-x-1 duration-200"
+          href="Ai fitness coach.html"
+        >
+          <span class="material-symbols-outlined">psychology</span> AI Coach
+        </a>
+      </nav>
+      <div class="px-6 mt-auto">
+        <a
+          href="pro.html"
+          class="block text-center w-full bg-surface-container-highest py-4 rounded-xl text-[#cafd00] font-label text-xs font-bold uppercase tracking-widest hover:bg-surface-bright transition-colors"
+        >
+          Upgrade to Pro
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="md:ml-64 pt-24 px-6 md:px-12 pb-12">
+      <!-- Header Section -->
+      <header
+        class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6"
+      >
+        <div>
+          <span
+            class="font-label text-[#cafd00] text-xs font-bold uppercase tracking-[0.3em]"
+            >Performance Tracking</span
+          >
+          <h1
+            class="font-headline text-5xl md:text-7xl font-black mt-2 tracking-tighter"
+          >
+            METRICS
+          </h1>
+        </div>
+        <div class="flex gap-4">
+          <div
+            class="bg-surface-container px-6 py-3 rounded-lg flex items-center gap-4"
+          >
+            <span class="material-symbols-outlined text-secondary"
+              >calendar_today</span
+            >
+            <div class="flex flex-col">
+              <span class="font-label text-[10px] text-white/40 uppercase"
+                >Last Sync</span
+              >
+              <span class="font-label text-sm font-bold">Today, 06:45 AM</span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Bento Grid: Key Metrics -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <!-- Current Weight -->
+        <div
+          class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden group"
+        >
+          <div class="relative z-10">
+            <div class="flex justify-between items-start mb-8">
+              <span
+                class="font-label text-xs text-white/40 uppercase tracking-widest"
+                >Current Weight</span
+              >
+              <span class="material-symbols-outlined text-[#cafd00]"
+                >monitor_weight</span
+              >
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="font-headline text-6xl font-black text-white"
+                >184.2</span
+              >
+              <span class="font-label text-xl text-white/40">LBS</span>
+            </div>
+            <div class="mt-4 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#cafd00] text-sm"
+                >trending_down</span
+              >
+              <span class="font-label text-xs text-[#cafd00] font-bold"
+                >-2.4 LBS
+                <span class="text-white/40 font-normal">THIS MONTH</span></span
+              >
+            </div>
+          </div>
+          <!-- Subtle Gradient Background decoration -->
+          <div
+            class="absolute -bottom-10 -right-10 w-40 h-40 bg-[#cafd00]/5 rounded-full blur-3xl group-hover:bg-[#cafd00]/10 transition-colors"
+          ></div>
+        </div>
+        <!-- BMI -->
+        <div
+          class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden group"
+        >
+          <div class="relative z-10">
+            <div class="flex justify-between items-start mb-8">
+              <span
+                class="font-label text-xs text-white/40 uppercase tracking-widest"
+                >Body Mass Index</span
+              >
+              <span class="material-symbols-outlined text-secondary"
+                >calculate</span
+              >
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="font-headline text-6xl font-black text-white"
+                >24.1</span
+              >
+              <span class="font-label text-xl text-white/40">BMI</span>
+            </div>
+            <div class="mt-4 flex items-center gap-2">
+              <div
+                class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden"
+              >
+                <div class="h-full bg-secondary w-[65%]"></div>
+              </div>
+              <span
+                class="font-label text-[10px] text-white/60 uppercase shrink-0"
+                >Normal</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Body Fat -->
+        <div
+          class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden group"
+        >
+          <div class="relative z-10">
+            <div class="flex justify-between items-start mb-8">
+              <span
+                class="font-label text-xs text-white/40 uppercase tracking-widest"
+                >Body Fat %</span
+              >
+              <span class="material-symbols-outlined text-tertiary"
+                >opacity</span
+              >
+            </div>
+            <div class="flex items-baseline gap-2">
+              <span class="font-headline text-6xl font-black text-white"
+                >16.8</span
+              >
+              <span class="font-label text-xl text-white/40">%</span>
+            </div>
+            <div class="mt-4 flex items-center gap-2">
+              <span class="material-symbols-outlined text-tertiary text-sm"
+                >bolt</span
+              >
+              <span class="font-label text-xs text-tertiary font-bold"
+                >ATHLETIC RANGE</span
+              >
+            </div>
+          </div>
+          <div
+            class="absolute -top-10 -right-10 w-40 h-40 bg-tertiary/5 rounded-full blur-3xl"
+          ></div>
+        </div>
+      </section>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        <!-- Weight Trend Chart -->
+        <div class="lg:col-span-8 bg-surface-container-low p-8 rounded-xl">
+          <div class="flex justify-between items-center mb-10">
+            <div>
+              <h2
+                class="font-headline text-xl font-bold uppercase tracking-tight"
+              >
+                Weight Trend
+              </h2>
+              <p
+                class="font-label text-xs text-white/40 mt-1 uppercase tracking-widest"
+              >
+                Past 6 Months Performance
+              </p>
+            </div>
+            <div class="flex gap-2">
+              <button
+                class="bg-surface-container-highest px-3 py-1 text-[10px] font-label font-bold rounded uppercase"
+              >
+                Weekly
+              </button>
+              <button
+                class="bg-[#cafd00] text-[#4a5e00] px-3 py-1 text-[10px] font-label font-bold rounded uppercase"
+              >
+                Monthly
+              </button>
+            </div>
+          </div>
+          <!-- SVG Weight Chart Simulation -->
+          <div class="h-64 w-full relative mt-4">
+            <svg class="w-full h-full" viewbox="0 0 800 200">
+              <!-- Grid Lines -->
+              <line
+                stroke="#262626"
+                stroke-dasharray="4"
+                x1="0"
+                x2="800"
+                y1="50"
+                y2="50"
+              ></line>
+              <line
+                stroke="#262626"
+                stroke-dasharray="4"
+                x1="0"
+                x2="800"
+                y1="100"
+                y2="100"
+              ></line>
+              <line
+                stroke="#262626"
+                stroke-dasharray="4"
+                x1="0"
+                x2="800"
+                y1="150"
+                y2="150"
+              ></line>
+              <!-- Trend Line (Downward) -->
+              <path
+                d="M0,40 L160,55 L320,80 L480,110 L640,125 L800,150"
+                fill="none"
+                stroke="#cafd00"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="4"
+              ></path>
+              <!-- Gradient area under line -->
+              <path
+                d="M0,40 L160,55 L320,80 L480,110 L640,125 L800,150 L800,200 L0,200 Z"
+                fill="url(#chartGradient)"
+                opacity="0.1"
+              ></path>
+              <!-- Data Points -->
+              <circle cx="160" cy="55" fill="#cafd00" r="5"></circle>
+              <circle cx="320" cy="80" fill="#cafd00" r="5"></circle>
+              <circle cx="480" cy="110" fill="#cafd00" r="5"></circle>
+              <circle cx="640" cy="125" fill="#cafd00" r="5"></circle>
+              <circle cx="800" cy="150" fill="#cafd00" r="8"></circle>
+              <defs>
+                <lineargradient
+                  id="chartGradient"
+                  x1="0%"
+                  x2="0%"
+                  y1="0%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    style="stop-color: #cafd00; stop-opacity: 1"
+                  ></stop>
+                  <stop
+                    offset="100%"
+                    style="stop-color: #cafd00; stop-opacity: 0"
+                  ></stop>
+                </lineargradient>
+              </defs>
+            </svg>
+            <!-- X-Axis Labels -->
+            <div
+              class="flex justify-between mt-4 font-label text-[10px] text-white/40 uppercase tracking-widest px-2"
+            >
+              <span>Jan</span>
+              <span>Feb</span>
+              <span>Mar</span>
+              <span>Apr</span>
+              <span>May</span>
+              <span>Jun</span>
+            </div>
+          </div>
+        </div>
+        <!-- Goal Setting -->
+        <div
+          class="lg:col-span-4 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between"
+        >
+          <div>
+            <h2
+              class="font-headline text-xl font-bold uppercase tracking-tight mb-2"
+            >
+              Weight Goal
+            </h2>
+            <p
+              class="font-label text-xs text-white/40 uppercase tracking-widest mb-10"
+            >
+              Target: 175.0 LBS
+            </p>
+            <div class="space-y-8">
+              <div>
+                <div class="flex justify-between items-end mb-3">
+                  <span class="font-label text-[10px] text-white/40 uppercase"
+                    >Total Progress</span
+                  >
+                  <span class="font-headline text-2xl font-black text-[#cafd00]"
+                    >72%</span
+                  >
+                </div>
+                <div
+                  class="h-4 w-full bg-surface-container-highest rounded-full p-1"
+                >
+                  <div class="h-full bg-[#cafd00] rounded-full w-[72%]"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-surface-container p-4 rounded-lg">
+                  <p class="font-label text-[10px] text-white/40 uppercase">
+                    Lost
+                  </p>
+                  <p class="font-headline text-xl font-bold text-white">
+                    23.8 <span class="text-[10px] text-white/40">LB</span>
+                  </p>
+                </div>
+                <div class="bg-surface-container p-4 rounded-lg">
+                  <p class="font-label text-[10px] text-white/40 uppercase">
+                    Remaining
+                  </p>
+                  <p class="font-headline text-xl font-bold text-white">
+                    9.2 <span class="text-[10px] text-white/40">LB</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="w-full mt-8 bg-surface-container-highest hover:bg-white/5 py-4 rounded-lg border border-[#cafd00]/20 font-label text-xs font-bold uppercase tracking-[0.2em] transition-all"
+          >
+            Update Goal Metrics
+          </button>
+        </div>
+      </div>
+      <!-- Progress Photos Timeline -->
+      <section class="mb-12">
+        <div class="flex items-end justify-between mb-8">
+          <div>
+            <h2
+              class="font-headline text-3xl font-black uppercase tracking-tighter"
+            >
+              PROGRESS PHOTOS
+            </h2>
+            <p
+              class="font-label text-xs text-white/40 uppercase tracking-widest mt-1"
+            >
+              Visual Evolution
+            </p>
+          </div>
+          <button
+            class="bg-[#cafd00] text-[#4a5e00] px-6 py-2 font-label font-bold text-xs uppercase tracking-tighter rounded-sm active:scale-95 transition-transform flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-sm">add_a_photo</span>
+            Add Photo
+          </button>
+        </div>
+        <div class="flex gap-6 overflow-x-auto pb-6 scroll-smooth snap-x">
+          <!-- Start Photo -->
+          <div class="min-w-[280px] snap-start">
+            <div class="relative aspect-[3/4] rounded-xl overflow-hidden group">
+              <img
+                alt="Before Photo"
+                class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                data-alt="shirtless athletic man standing against gray gym wall in dramatic shadows, starting progress photo, Jan 2024"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfx-B9Ig41wekiKGig1x52TfL-_vbOREV-IPOjdE-hU0s5Th2vceaq2OtbvhNPGnzPqTje4rQefS3xpQdCCckzMaSRFN_ATzARjhZMt32-Hw1yhEcIGH0CoYXACwqUS71qUiYa1mwObRutqZr3i2kjJFjEFVPEt0i5DR0ZinJmBN1XAI2x5-MNk0KwSUAUx21iOotPlpfbBk8COHCC4OgEGt4Hs5vfD9TQsk8yXCLHIFg2sAP9m8SkwmK5JTceDRVqsfIZMhXLxzo"
+              />
+              <div
+                class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-sm"
+              >
+                <span
+                  class="font-label text-[10px] text-white font-bold uppercase tracking-widest"
+                  >Jan 12, 2024</span
+                >
+              </div>
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="font-headline text-lg font-black text-white drop-shadow-lg"
+                  >BASELINE</span
+                >
+              </div>
+              <div
+                class="absolute inset-0 border-2 border-white/10 group-hover:border-[#cafd00]/50 transition-colors pointer-events-none rounded-xl"
+              ></div>
+            </div>
+            <div class="mt-3 px-2 flex justify-between items-center">
+              <span class="font-label text-xs text-white/40 uppercase"
+                >Weight: 208 lbs</span
+              >
+              <span class="font-label text-xs text-white/40 uppercase"
+                >Body Fat: 22%</span
+              >
+            </div>
+          </div>
+          <!-- Mid Point -->
+          <div class="min-w-[280px] snap-start">
+            <div class="relative aspect-[3/4] rounded-xl overflow-hidden group">
+              <img
+                alt="March Photo"
+                class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                data-alt="fitness athlete posing in dimly lit gym, visible muscle definition, mid progress photo, Mar 2024"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsR7pwtfCDRp0bWFkXQ9Q7iveXoQHrE1fA70TQ66MbnUJFlCpXBTaBOTJTW3ISizQDnzyvtZ4-u9Xcv1_HzxwxMQwCa3x4OuzX60bQdJ1NJCPiztMwNQ7sXeHhm0zUUbxMRKGaLVaOb2IkWEOxtmMyR1fHB2lEEB_AqsD797EdsIXrMWCjZ22Q9ga-1bzPIVrG76e4wFj7koHC5j0SNV04JXAq1OMgNEnVVOK-yI7tTC5UyNtTlISUzk7U9Ia8Bq2hr0ldzhrIa1c"
+              />
+              <div
+                class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-sm"
+              >
+                <span
+                  class="font-label text-[10px] text-white font-bold uppercase tracking-widest"
+                  >Mar 24, 2024</span
+                >
+              </div>
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="font-headline text-lg font-black text-white drop-shadow-lg"
+                  >12 WEEKS</span
+                >
+              </div>
+              <div
+                class="absolute inset-0 border-2 border-white/10 group-hover:border-[#cafd00]/50 transition-colors pointer-events-none rounded-xl"
+              ></div>
+            </div>
+            <div class="mt-3 px-2 flex justify-between items-center">
+              <span class="font-label text-xs text-white/40 uppercase"
+                >Weight: 195 lbs</span
+              >
+              <span class="font-label text-xs text-white/40 uppercase"
+                >Body Fat: 19%</span
+              >
+            </div>
+          </div>
+          <!-- Current -->
+          <div class="min-w-[280px] snap-start">
+            <div class="relative aspect-[3/4] rounded-xl overflow-hidden group">
+              <img
+                alt="Current Photo"
+                class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                data-alt="highly defined muscular torso of athlete, dramatic side lighting, black background, current progress photo, June 2024"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs70KdeV32-cfTQyIpSBXXkzMQh1sBGDCiz6hu6L43vR8zHa89v32vbNjZNsYL51ZqV_tEDeJpakTHaKMyb19fMwBp5n9TGcMZmEMYALtNd9ETSzw0kZkf_Z80y4yQbwgZfVprKntE7RdbgxT77L4ZS4QvMhITQrRMy82tpRZWsV8dtSbtn1MjTCu_CMjg732fl0F7b9e51TY1QD69kXUARHZVHxr__D-yboEixoW7hZ_o3g42yXwTBrfyvOHfzB51PSj0qQ2g-b8"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#cafd00] px-3 py-1 rounded-sm"
+              >
+                <span
+                  class="font-label text-[10px] text-[#4a5e00] font-bold uppercase tracking-widest"
+                  >Today</span
+                >
+              </div>
+              <div class="absolute bottom-4 left-4">
+                <span
+                  class="font-headline text-lg font-black text-white drop-shadow-lg"
+                  >CURRENT</span
+                >
+              </div>
+              <div
+                class="absolute inset-0 border-2 border-[#cafd00]/40 pointer-events-none rounded-xl shadow-[inset_0_0_40px_rgba(202,253,0,0.1)]"
+              ></div>
+            </div>
+            <div class="mt-3 px-2 flex justify-between items-center">
+              <span class="font-label text-xs text-white/40 uppercase"
+                >Weight: 184 lbs</span
+              >
+              <span
+                class="font-label text-xs text-[#cafd00] font-bold uppercase"
+                >Body Fat: 16%</span
+              >
+            </div>
+          </div>
+          <!-- Empty State/Placeholder -->
+          <div class="min-w-[280px] snap-start">
+            <div
+              class="relative aspect-[3/4] rounded-xl border-2 border-dashed border-white/10 flex flex-col items-center justify-center bg-surface-container-lowest/50 hover:bg-surface-container-lowest transition-colors cursor-pointer group"
+            >
+              <span
+                class="material-symbols-outlined text-4xl text-white/20 group-hover:text-[#cafd00] transition-colors"
+                >upload_file</span
+              >
+              <span
+                class="font-label text-[10px] text-white/20 uppercase tracking-[0.2em] mt-4 group-hover:text-white transition-colors"
+                >Next Milestone</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Detailed Metrics List -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-surface-container-low p-8 rounded-xl">
+          <h3
+            class="font-headline text-xl font-black uppercase tracking-tight mb-8"
+          >
+            Circumference Data
+          </h3>
+          <div class="space-y-6">
+            <div
+              class="flex justify-between items-center py-2 border-b border-white/5"
+            >
+              <span class="font-label text-sm text-white/60 uppercase"
+                >Chest</span
+              >
+              <span class="font-headline font-bold"
+                >42.5 <span class="text-xs text-white/40">IN</span></span
+              >
+            </div>
+            <div
+              class="flex justify-between items-center py-2 border-b border-white/5"
+            >
+              <span class="font-label text-sm text-white/60 uppercase"
+                >Waist</span
+              >
+              <span class="font-headline font-bold text-[#cafd00]"
+                >32.1 <span class="text-xs text-white/40">IN</span></span
+              >
+            </div>
+            <div
+              class="flex justify-between items-center py-2 border-b border-white/5"
+            >
+              <span class="font-label text-sm text-white/60 uppercase"
+                >Hips</span
+              >
+              <span class="font-headline font-bold"
+                >38.4 <span class="text-xs text-white/40">IN</span></span
+              >
+            </div>
+            <div class="flex justify-between items-center py-2">
+              <span class="font-label text-sm text-white/60 uppercase"
+                >Bicep (L/R)</span
+              >
+              <span class="font-headline font-bold"
+                >15.8 <span class="text-xs text-white/40">IN</span></span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="bg-surface-container-low p-8 rounded-xl">
+          <h3
+            class="font-headline text-xl font-black uppercase tracking-tight mb-8"
+          >
+            Health Indicators
+          </h3>
+          <div class="space-y-6">
+            <div
+              class="flex items-center gap-4 bg-surface-container p-4 rounded-lg"
+            >
+              <div
+                class="w-12 h-12 bg-secondary/10 flex items-center justify-center rounded-full shrink-0"
+              >
+                <span class="material-symbols-outlined text-secondary"
+                  >favorite</span
+                >
+              </div>
+              <div class="flex-1">
+                <p class="font-label text-[10px] text-white/40 uppercase">
+                  Resting Heart Rate
+                </p>
+                <p class="font-headline text-xl font-bold">
+                  54 <span class="text-xs font-normal">BPM</span>
+                </p>
+              </div>
+              <span
+                class="font-label text-[10px] bg-secondary/20 text-secondary px-2 py-0.5 rounded uppercase"
+                >Elite</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-4 bg-surface-container p-4 rounded-lg"
+            >
+              <div
+                class="w-12 h-12 bg-tertiary/10 flex items-center justify-center rounded-full shrink-0"
+              >
+                <span class="material-symbols-outlined text-tertiary"
+                  >water_drop</span
+                >
+              </div>
+              <div class="flex-1">
+                <p class="font-label text-[10px] text-white/40 uppercase">
+                  Hydration Level
+                </p>
+                <p class="font-headline text-xl font-bold">Optimal</p>
+              </div>
+              <span class="material-symbols-outlined text-tertiary text-sm"
+                >check_circle</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-4 bg-surface-container p-4 rounded-lg"
+            >
+              <div
+                class="w-12 h-12 bg-[#cafd00]/10 flex items-center justify-center rounded-full shrink-0"
+              >
+                <span class="material-symbols-outlined text-[#cafd00]"
+                  >bolt</span
+                >
+              </div>
+              <div class="flex-1">
+                <p class="font-label text-[10px] text-white/40 uppercase">
+                  Basal Metabolic Rate
+                </p>
+                <p class="font-headline text-xl font-bold">
+                  1,842 <span class="text-xs font-normal">KCAL</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full bg-[#1a1a1a] flex justify-around items-center h-20 z-50"
+    >
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="Index.html"
+      >
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="text-[10px] font-label uppercase">Home</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="smartworkoutlog.html"
+      >
+        <span class="material-symbols-outlined">fitness_center</span>
+        <span class="text-[10px] font-label uppercase">Plans</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-[#cafd00] font-bold"
+        href="body metrixs.html"
+      >
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >monitoring</span
+        >
+        <span class="text-[10px] font-label uppercase">Metrics</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="Nutrition & marco tracker.html"
+      >
+        <span class="material-symbols-outlined">restaurant</span>
+        <span class="text-[10px] font-label uppercase">Eat</span>
+      </a>
+      <a
+        class="flex flex-col items-center gap-1 text-white/40"
+        href="logout.html"
+      >
+        <span class="material-symbols-outlined">person</span>
+        <span class="text-[10px] font-label uppercase">Profile</span>
+      </a>
+    </nav>
+  </body>
+</html>

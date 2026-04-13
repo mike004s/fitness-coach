@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+
+{% block title %}KINETIC — Connect with Google{% endblock %}
+
+{% block body %}
+<div class="flex items-center justify-center min-h-screen">
+  <div class="bg-surface-container-low p-8 rounded-xl max-w-sm w-full text-center">
+    <h2 class="font-headline text-2xl font-bold mb-4">Connect with Google</h2>
+    <p class="font-body text-on-surface-variant text-sm mb-8">
+      Sign in to KINETIC using your Google account.
+    </p>
+    <a href="{% provider_login_url 'google' %}" class="block w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline font-black py-4 rounded-lg uppercase tracking-wide text-sm">
+      Continue with Google
+    </a>
+    <a href="{% url 'accounts:signin' %}" class="block mt-4 font-label text-xs text-on-surface-variant hover:text-on-surface tracking-widest uppercase">← Back to Sign In</a>
+  </div>
+</div>
+{% endblock %}

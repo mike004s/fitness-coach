@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}KINETIC | High-Performance Dashboard{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-background text-on-background">
+  <!-- Nav bar -->
+  <nav class="bg-surface-container-low border-b border-outline-variant/20 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a class="text-2xl font-headline font-black italic tracking-tighter text-primary-container" href="/">KINETIC</a>
+      <div class="flex items-center gap-6">
+        {% if user.is_authenticated %}
+          <span class="font-label text-xs text-on-surface-variant uppercase tracking-widest">
+            {{ user.get_display_name }}
+          </span>
+          <a class="font-label text-xs uppercase tracking-widest text-primary hover:text-primary-container transition-colors" href="{% url 'accounts:logout' %}">
+            <span class="material-symbols-outlined align-middle text-sm mr-1">logout</span>Logout
+          </a>
+        {% else %}
+          <a class="font-label text-xs uppercase tracking-widest text-primary hover:text-primary-container transition-colors" href="{% url 'accounts:signin' %}">Sign In</a>
+          <a class="font-label text-xs uppercase tracking-widest bg-primary-container text-on-primary-container px-4 py-2 rounded-lg hover:opacity-90 transition-opacity" href="{% url 'accounts:signup' %}">Join</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <main class="flex flex-col items-center justify-center px-6 pt-32 pb-20 text-center">
+    <p class="font-label text-[10px] uppercase tracking-[0.4em] text-primary-container mb-6">Welcome to</p>
+    <h1 class="font-headline text-7xl md:text-9xl font-black italic tracking-tighter uppercase leading-[0.9] mb-8">
+      KINETIC<br/><span class="text-primary-container">PULSE</span>
+    </h1>
+    <p class="font-body text-on-surface-variant max-w-lg mb-12">
+      The high-performance fitness ecosystem. Track workouts, monitor nutrition, and push beyond limits.
+    </p>
+    {% if not user.is_authenticated %}
+      <div class="flex gap-4">
+        <a class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline font-black px-8 py-4 uppercase tracking-tighter text-lg italic hover:scale-[1.02] active:scale-95 transition-all rounded-lg" href="{% url 'accounts:signup' %}">
+          Start Free
+        </a>
+        <a class="border border-outline-variant/30 text-on-surface font-headline font-bold px-8 py-4 uppercase tracking-tighter text-lg italic hover:bg-surface-container transition-all rounded-lg" href="{% url 'accounts:signin' %}">
+          Sign In
+        </a>
+      </div>
+    {% else %}
+      <p class="font-headline text-xl font-bold text-primary">
+        You're in, {{ user.get_display_name }}. Time to train.
+      </p>
+    {% endif %}
+  </main>
+</div>
+{% endblock %}

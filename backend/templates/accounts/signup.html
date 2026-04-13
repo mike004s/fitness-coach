@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}KINETIC — Create Account{% endblock %}
+
+{% block body %}
+<div class="bg-background text-on-background min-h-screen flex flex-col">
+  <main class="flex-grow flex flex-col md:flex-row">
+
+    <!-- Visual column -->
+    <section class="relative w-full md:w-1/2 lg:w-3/5 h-64 md:h-screen overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent to-background z-10 hidden md:block"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 md:hidden"></div>
+      <img
+        alt="Athlete Focus"
+        class="absolute inset-0 w-full h-full object-cover grayscale contrast-125"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhqNs-1BDsiPFMh1FDzliS2tzu5Mik5Bi3MZhncusHTUQFVjJz5B0OR3jMS4LZbZXIj_PzK-GVxoxyOLv1GB7amog0-Xz_ltHFVs7gpwM8RMfIIF-mjtXs9xbkeaOM3wXdWsVYT0KM49aowtTP0mJj8GmwkC-UBPMbg7mFLn7oMjlbGOZmpozYfWmCVWEWp8W61GEwfpnWdwnzjxb7KS2XT_mxs-wA1mjuLVm7VVO433VFZD0qmuFarYm0ipj8UoKrMoGwMrzuZ94"
+      />
+      <div class="absolute bottom-12 left-8 md:bottom-20 md:left-20 z-20 max-w-lg">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="h-[2px] w-12 bg-primary-container"></div>
+          <span class="font-label text-primary-container text-xs tracking-[0.3em] uppercase">Limitless Performance</span>
+        </div>
+        <h1 class="font-headline text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-[0.9]">
+          KINETIC<br/><span class="text-primary-container">PULSE</span>
+        </h1>
+      </div>
+    </section>
+
+    <!-- Form column -->
+    <section class="w-full md:w-1/2 lg:w-2/5 flex flex-col justify-center px-6 py-12 md:px-16 lg:px-24 bg-surface relative z-30">
+      <div class="mb-12">
+        <h2 class="font-headline text-3xl font-extrabold tracking-tight mb-2">CREATE ACCOUNT</h2>
+        <p class="font-body text-on-surface-variant text-sm">Join the ecosystem of elite performance tracking.</p>
+      </div>
+
+      <!-- Django messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="mb-4 p-3 rounded-lg text-sm
+            {% if message.tags == 'error' %}bg-error-container/30 text-error
+            {% else %}bg-primary/10 text-primary{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="POST" action="{% url 'accounts:signup' %}" class="space-y-6">
+        {% csrf_token %}
+
+        <!-- Full Name -->
+        <div class="space-y-2">
+          <label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1" for="{{ form.full_name.id_for_label }}">Full Identity</label>
+          <div class="relative group">
+            {{ form.full_name }}
+            <div class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"></div>
+          </div>
+          {% if form.full_name.errors %}
+            <p class="text-error text-xs ml-1">{{ form.full_name.errors|join:", " }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Email -->
+        <div class="space-y-2">
+          <label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1" for="{{ form.email.id_for_label }}">Digital Anchor</label>
+          <div class="relative group">
+            {{ form.email }}
+            <div class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"></div>
+          </div>
+          {% if form.email.errors %}
+            <p class="text-error text-xs ml-1">{{ form.email.errors|join:", " }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-2">
+          <label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1" for="{{ form.password1.id_for_label }}">Secure Protocol</label>
+          <div class="relative group">
+            {{ form.password1 }}
+            <div class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"></div>
+            <button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors toggle-password" type="button">
+              <span class="material-symbols-outlined text-xl">visibility</span>
+            </button>
+          </div>
+          {% if form.password1.errors %}
+            <p class="text-error text-xs ml-1">{{ form.password1.errors|join:", " }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="space-y-2">
+          <label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1" for="{{ form.password2.id_for_label }}">Confirm Protocol</label>
+          <div class="relative group">
+            {{ form.password2 }}
+            <div class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"></div>
+          </div>
+          {% if form.password2.errors %}
+            <p class="text-error text-xs ml-1">{{ form.password2.errors|join:", " }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Submit -->
+        <div class="pt-6">
+          <button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline font-black py-5 uppercase tracking-tighter text-xl italic hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary-container/10" type="submit">
+            Join the Pulse
+          </button>
+        </div>
+      </form>
+
+      <!-- Social / alternative -->
+      <div class="mt-12 space-y-8">
+        <div class="flex items-center gap-4">
+          <div class="flex-grow h-[1px] bg-outline-variant/30"></div>
+          <span class="font-label text-[10px] uppercase tracking-widest text-white/20">Authorized Providers</span>
+          <div class="flex-grow h-[1px] bg-outline-variant/30"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <button class="flex items-center justify-center gap-2 py-4 bg-surface-container-low hover:bg-surface-container-highest transition-colors border border-outline-variant/10 opacity-40 cursor-not-allowed" disabled title="Coming soon">
+            <span class="font-label text-xs uppercase tracking-wider">Apple ID</span>
+          </button>
+          <a href="/accounts/google/login/" class="flex items-center justify-center gap-2 py-4 bg-surface-container-low hover:bg-surface-container-highest transition-colors border border-outline-variant/10">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            <span class="font-label text-xs uppercase tracking-wider">Google</span>
+          </a>
+        </div>
+        <p class="text-center font-body text-xs text-on-surface-variant">
+          Already part of the network?
+          <a class="text-primary-container font-bold hover:underline" href="{% url 'accounts:signin' %}">Log in</a>
+        </p>
+      </div>
+
+      <div class="mt-auto pt-12">
+        <p class="text-[9px] font-label text-on-surface-variant/40 leading-relaxed uppercase tracking-widest">
+          By initiating protocol, you agree to the KINETIC Service Agreements and Privacy Infrastructure. Data encrypted with 256-bit Pulse-Sync.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Decoration -->
+  <div class="fixed top-1/2 -right-64 w-[600px] h-[600px] bg-primary-container/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-0 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+</div>
+
+<script>
+  document.querySelectorAll('.toggle-password').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = btn.closest('.relative').querySelector('input');
+      if (input) {
+        input.type = input.type === 'password' ? 'text' : 'password';
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (icon) icon.textContent = input.type === 'password' ? 'visibility' : 'visibility_off';
+      }
+    });
+  });
+</script>
+{% endblock %}

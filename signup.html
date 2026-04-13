@@ -1,0 +1,287 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KINETIC - Join the Pulse</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Inter:wght@100..900&amp;family=Space+Grotesk:wght@300..700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#1a1a1a",
+              "surface-bright": "#2c2c2c",
+              "on-primary": "#516700",
+              "secondary-fixed-dim": "#ffb197",
+              "on-surface-variant": "#adaaaa",
+              "on-tertiary-container": "#5d5000",
+              "on-primary-fixed-variant": "#526900",
+              primary: "#f3ffca",
+              "surface-variant": "#262626",
+              "surface-container-lowest": "#000000",
+              "on-secondary": "#410f00",
+              "secondary-dim": "#ff7441",
+              outline: "#767575",
+              "tertiary-dim": "#edd13a",
+              "inverse-primary": "#516700",
+              "inverse-on-surface": "#565555",
+              tertiary: "#ffeea5",
+              "on-error-container": "#ffd2c8",
+              error: "#ff7351",
+              "on-surface": "#ffffff",
+              "outline-variant": "#484847",
+              "on-secondary-fixed-variant": "#932d00",
+              "secondary-container": "#ab3600",
+              "surface-dim": "#0e0e0e",
+              "surface-tint": "#f3ffca",
+              "primary-container": "#cafd00",
+              "tertiary-container": "#fce047",
+              "surface-container-low": "#131313",
+              "on-tertiary": "#665800",
+              surface: "#0e0e0e",
+              background: "#0e0e0e",
+              "primary-fixed-dim": "#beee00",
+              "on-secondary-container": "#fff6f3",
+              "on-tertiary-fixed": "#483d00",
+              "on-secondary-fixed": "#631b00",
+              "surface-container-highest": "#262626",
+              "surface-container-high": "#20201f",
+              secondary: "#ff7441",
+              "on-tertiary-fixed-variant": "#685900",
+              "primary-fixed": "#cafd00",
+              "on-primary-container": "#4a5e00",
+              "inverse-surface": "#fcf9f8",
+              "on-error": "#450900",
+              "on-primary-fixed": "#3a4a00",
+              "tertiary-fixed-dim": "#edd13a",
+              "error-dim": "#d53d18",
+              "error-container": "#b92902",
+              "secondary-fixed": "#ffc4b1",
+              "tertiary-fixed": "#fce047",
+              "on-background": "#ffffff",
+              "primary-dim": "#beee00",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Lexend"],
+              body: ["Inter"],
+              label: ["Space Grotesk"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        background-color: #0e0e0e;
+        color: #ffffff;
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background min-h-screen flex flex-col">
+    <main class="flex-grow flex flex-col md:flex-row">
+      <!-- Visual Column -->
+      <section
+        class="relative w-full md:w-1/2 lg:w-3/5 h-64 md:h-screen overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-transparent to-background z-10 hidden md:block"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 md:hidden"
+        ></div>
+        <img
+          alt="Athlete Focus"
+          class="absolute inset-0 w-full h-full object-cover grayscale contrast-125"
+          data-alt="Intense close-up of a muscular athlete dripping with sweat, preparing for a lift in a gritty dark gym with high-contrast shadows and dramatic lime-tinted rim lighting."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhqNs-1BDsiPFMh1FDzliS2tzu5Mik5Bi3MZhncusHTUQFVjJz5B0OR3jMS4LZbZXIj_PzK-GVxoxyOLv1GB7amog0-Xz_ltHFVs7gpwM8RMfIIF-mjtXs9xbkeaOM3wXdWsVYT0KM49aowtTP0mJj8GmwkC-UBPMbg7mFLn7oMjlbGOZmpozYfWmCVWEWp8W61GEwfpnWdwnzjxb7KS2XT_mxs-wA1mjuLVm7VVO433VFZD0qmuFarYm0ipj8UoKrMoGwMrzuZ94"
+        />
+        <div
+          class="absolute bottom-12 left-8 md:bottom-20 md:left-20 z-20 max-w-lg"
+        >
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-[2px] w-12 bg-primary-container"></div>
+            <span
+              class="font-label text-primary-container text-xs tracking-[0.3em] uppercase"
+              >Limitless Performance</span
+            >
+          </div>
+          <h1
+            class="font-headline text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-[0.9]"
+          >
+            KINETIC<br /><span class="text-primary-container">PULSE</span>
+          </h1>
+        </div>
+      </section>
+      <!-- Form Column -->
+      <section
+        class="w-full md:w-1/2 lg:w-2/5 flex flex-col justify-center px-6 py-12 md:px-16 lg:px-24 bg-surface relative z-30"
+      >
+        <div class="mb-12">
+          <h2 class="font-headline text-3xl font-extrabold tracking-tight mb-2">
+            CREATE ACCOUNT
+          </h2>
+          <p class="font-body text-on-surface-variant text-sm">
+            Join the ecosystem of elite performance tracking.
+          </p>
+        </div>
+        <form action="Index.html" class="space-y-6">
+          <!-- Name Field -->
+          <div class="space-y-2">
+            <label
+              class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1"
+              for="name"
+              >Full Identity</label
+            >
+            <div class="relative group">
+              <input
+                class="w-full bg-surface-container-highest border-none focus:ring-0 focus:bg-surface-bright p-4 font-headline text-sm tracking-tight placeholder:text-white/10 text-on-surface transition-all duration-300"
+                id="name"
+                placeholder="ALEX RIVERA"
+                type="text"
+              />
+              <div
+                class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+          <!-- Email Field -->
+          <div class="space-y-2">
+            <label
+              class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1"
+              for="email"
+              >Digital Anchor</label
+            >
+            <div class="relative group">
+              <input
+                class="w-full bg-surface-container-highest border-none focus:ring-0 focus:bg-surface-bright p-4 font-headline text-sm tracking-tight placeholder:text-white/10 text-on-surface transition-all duration-300"
+                id="email"
+                placeholder="ALEX@KINETIC.APP"
+                type="email"
+              />
+              <div
+                class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"
+              ></div>
+            </div>
+          </div>
+          <!-- Password Field -->
+          <div class="space-y-2">
+            <label
+              class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1"
+              for="password"
+              >Secure Protocol</label
+            >
+            <div class="relative group">
+              <input
+                class="w-full bg-surface-container-highest border-none focus:ring-0 focus:bg-surface-bright p-4 font-headline text-sm tracking-tight placeholder:text-white/10 text-on-surface transition-all duration-300"
+                id="password"
+                placeholder="••••••••••••"
+                type="password"
+              />
+              <div
+                class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"
+              ></div>
+              <button
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >visibility</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- CTA -->
+          <div class="pt-6">
+            <button
+              class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-headline font-black py-5 uppercase tracking-tighter text-xl italic hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary-container/10"
+              type="submit"
+            >
+              Join the Pulse
+            </button>
+          </div>
+        </form>
+        <!-- Social/Login Alternative -->
+        <div class="mt-12 space-y-8">
+          <div class="flex items-center gap-4">
+            <div class="flex-grow h-[1px] bg-outline-variant/30"></div>
+            <span
+              class="font-label text-[10px] uppercase tracking-widest text-white/20"
+              >Authorized Providers</span
+            >
+            <div class="flex-grow h-[1px] bg-outline-variant/30"></div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <button
+              class="flex items-center justify-center gap-2 py-4 bg-surface-container-low hover:bg-surface-container-highest transition-colors border border-outline-variant/10"
+            >
+              <span class="font-label text-xs uppercase tracking-wider"
+                >Apple ID</span
+              >
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 py-4 bg-surface-container-low hover:bg-surface-container-highest transition-colors border border-outline-variant/10"
+            >
+              <span class="font-label text-xs uppercase tracking-wider"
+                >Google</span
+              >
+            </button>
+          </div>
+          <p class="text-center font-body text-xs text-on-surface-variant">
+            Already part of the network?
+            <a
+              class="text-primary-container font-bold hover:underline"
+              href="signin.html"
+              >Log in</a
+            >
+          </p>
+        </div>
+        <!-- Footer Compliance -->
+        <div class="mt-auto pt-12">
+          <p
+            class="text-[9px] font-label text-on-surface-variant/40 leading-relaxed uppercase tracking-widest"
+          >
+            By initiating protocol, you agree to the KINETIC Service Agreements
+            and Privacy Infrastructure. Data encrypted with 256-bit Pulse-Sync.
+          </p>
+        </div>
+      </section>
+    </main>
+    <!-- Decoration Layer -->
+    <div
+      class="fixed top-1/2 -right-64 w-[600px] h-[600px] bg-primary-container/5 rounded-full blur-[120px] pointer-events-none z-0"
+    ></div>
+    <div
+      class="fixed bottom-0 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none z-0"
+    ></div>
+  </body>
+</html>
