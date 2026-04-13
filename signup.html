@@ -154,7 +154,9 @@
             Join the ecosystem of elite performance tracking.
           </p>
         </div>
-        <form action="index.html" class="space-y-6">
+        <form id="signup-form" class="space-y-6">
+          <div id="signup-error" class="hidden bg-error-container/20 border border-error/30 rounded-lg p-3 text-sm text-error font-body"></div>
+          <div id="signup-success" class="hidden bg-primary-container/20 border border-primary/30 rounded-lg p-3 text-sm text-primary font-body"></div>
           <!-- Name Field -->
           <div class="space-y-2">
             <label
@@ -168,6 +170,7 @@
                 id="name"
                 placeholder="ALEX RIVERA"
                 type="text"
+                required
               />
               <div
                 class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"
@@ -187,6 +190,7 @@
                 id="email"
                 placeholder="ALEX@KINETIC.APP"
                 type="email"
+                required
               />
               <div
                 class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"
@@ -206,6 +210,8 @@
                 id="password"
                 placeholder="••••••••••••"
                 type="password"
+                required
+                minlength="6"
               />
               <div
                 class="absolute bottom-0 left-0 h-[1px] w-0 group-focus-within:w-full bg-primary-container transition-all duration-500"
@@ -283,5 +289,41 @@
     <div
       class="fixed bottom-0 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none z-0"
     ></div>
+    <script>
+      document.getElementById('signup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim().toLowerCase();
+        const password = document.getElementById('password').value;
+        const errorMsg = document.getElementById('signup-error');
+        const successMsg = document.getElementById('signup-success');
+        errorMsg.classList.add('hidden');
+        successMsg.classList.add('hidden');
+
+        if (!name || !email || !password) {
+          errorMsg.textContent = 'Please fill in all fields.';
+          errorMsg.classList.remove('hidden');
+          return;
+        }
+
+        const accounts = JSON.parse(localStorage.getItem('kinetic_accounts') || '{}');
+
+        if (accounts[email]) {
+          errorMsg.textContent = 'An account with this email already exists. Redirecting to sign in...';
+          errorMsg.classList.remove('hidden');
+          setTimeout(function() { window.location.href = 'signin.html'; }, 2000);
+          return;
+        }
+
+        accounts[email] = password;
+        localStorage.setItem('kinetic_accounts', JSON.stringify(accounts));
+        localStorage.setItem('kinetic_user', email);
+        localStorage.setItem('kinetic_user_name', name);
+
+        successMsg.textContent = 'Account created! Redirecting to dashboard...';
+        successMsg.classList.remove('hidden');
+        setTimeout(function() { window.location.href = 'index.html'; }, 1500);
+      });
+    </script>
   </body>
 </html>
