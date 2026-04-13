@@ -270,7 +270,7 @@
           </button>
         </div>
         <!-- Messages Area -->
-        <div class="flex-1 overflow-y-auto px-4 md:px-8 space-y-6 md:space-y-8 py-6">
+        <div id="messages" class="flex-1 overflow-y-auto px-4 md:px-8 space-y-6 md:space-y-8 py-6">
           <!-- Coach Message -->
           <div class="flex gap-4 max-w-2xl">
             <div
@@ -358,17 +358,17 @@
         <div class="p-4 md:p-8 pt-0">
           <!-- Quick Suggestions -->
           <div class="flex gap-3 mb-6 overflow-x-auto pb-2">
-            <button
+            <button onclick="sendMessage('Recommend a 15-min HIIT')"
               class="whitespace-nowrap bg-surface-container-highest border-none px-4 py-2 rounded-full font-label text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
             >
               Recommend a 15-min HIIT
             </button>
-            <button
+            <button onclick="sendMessage('Fix my squat form')"
               class="whitespace-nowrap bg-surface-container-highest border-none px-4 py-2 rounded-full font-label text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
             >
               Fix my squat form
             </button>
-            <button
+            <button onclick="sendMessage('Explain macro tracking')"
               class="whitespace-nowrap bg-surface-container-highest border-none px-4 py-2 rounded-full font-label text-xs text-primary-dim hover:bg-primary-container hover:text-on-primary-container transition-all"
             >
               Explain macro tracking
@@ -376,9 +376,11 @@
           </div>
           <div class="relative group">
             <input
+              id="chat-input"
               class="w-full bg-surface-container-highest border-none rounded-xl py-5 px-6 pr-20 text-on-surface font-body focus:ring-0 placeholder:text-on-surface-variant transition-all focus:bg-surface-bright"
               placeholder="Ask Kinetic Coach anything..."
               type="text"
+              onkeydown="if(event.key==='Enter')sendFromInput()"
             />
             <div
               class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3"
@@ -391,6 +393,7 @@
                 >
               </button>
               <button
+                onclick="sendFromInput()"
                 class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container hover:scale-105 transition-transform active:scale-95"
               >
                 <span class="material-symbols-outlined" data-icon="send"
@@ -599,6 +602,168 @@
           panel.classList.add('flex');
           overlay.classList.remove('hidden');
         }
+      }
+
+      /* ── AI Coach Chat Engine ─────────────────────────── */
+      const RESPONSES = {
+        workout: [
+          { text: "Based on your current training split, I recommend a <strong>Push Day</strong> today:<br><br>1. Barbell Bench Press — 4×8<br>2. Overhead Press — 3×10<br>3. Incline Dumbbell Press — 3×12<br>4. Lateral Raises — 4×15<br>5. Tricep Pushdowns — 3×12<br><br>Rest 90s between sets. Aim for RPE 8.", macros: null },
+          { text: "Here's a quick <strong>15-min HIIT</strong> you can do anywhere:<br><br>• 30s Burpees → 30s Rest<br>• 30s Mountain Climbers → 30s Rest<br>• 30s Jump Squats → 30s Rest<br>• 30s High Knees → 30s Rest<br>• Repeat 3 rounds<br><br>Estimated burn: <strong>180–220 kcal</strong>.", macros: { calories: '~200 kcal', duration: '15 min' } },
+          { text: "Your legs need attention. Try this <strong>Lower Body</strong> session:<br><br>1. Back Squats — 4×6 (heavy)<br>2. Romanian Deadlifts — 3×10<br>3. Walking Lunges — 3×12 each leg<br>4. Leg Press — 3×15<br>5. Calf Raises — 4×20<br><br>Focus on controlled eccentric phases.", macros: null },
+        ],
+        nutrition: [
+          { text: "For dinner tonight, I suggest <strong>Grilled Salmon with Quinoa & Asparagus</strong>.<br><br>This hits your remaining macros perfectly — high omega-3s for recovery, complex carbs for glycogen replenishment, and fiber to keep you satiated.", macros: { calories: '520 kcal', protein: '42g', carbs: '38g', fats: '18g' } },
+          { text: "Here's a solid <strong>post-workout shake</strong> recipe:<br><br>• 1 scoop whey protein<br>• 1 banana<br>• 1 tbsp peanut butter<br>• 250ml oat milk<br>• Ice<br><br>Blend and drink within 30 minutes of training for optimal recovery.", macros: { calories: '380 kcal', protein: '32g', carbs: '42g', fats: '10g' } },
+          { text: "To stay on track with your cutting phase, keep tonight's meal under 500 kcal. Try <strong>Chicken Stir-Fry with Vegetables</strong>:<br><br>• 150g chicken breast<br>• Mixed bell peppers, broccoli, snap peas<br>• 1 tbsp soy sauce + ginger<br>• Serve over 80g brown rice<br><br>High volume, high protein, low calorie density.", macros: { calories: '440 kcal', protein: '45g', carbs: '35g', fats: '12g' } },
+        ],
+        form: [
+          { text: "<strong>Squat Form Check — Key Cues:</strong><br><br>1. <strong>Feet</strong> — Shoulder-width, toes slightly out (15–30°)<br>2. <strong>Brace</strong> — Deep breath, brace core like you're about to be punched<br>3. <strong>Descent</strong> — Break at hips AND knees simultaneously<br>4. <strong>Depth</strong> — Hip crease below knee (parallel minimum)<br>5. <strong>Drive</strong> — Push through mid-foot, knees track over toes<br><br>Common fix: If your heels rise, try elevating them on small plates until ankle mobility improves.", macros: null },
+          { text: "<strong>Deadlift Form Tips:</strong><br><br>1. Bar over mid-foot<br>2. Grip just outside knees<br>3. Chest up, lats engaged (\"protect your armpits\")<br>4. Push the floor away — don't pull the bar<br>5. Lock out with glutes, not lower back<br><br>Record yourself from the side and I can help analyze further.", macros: null },
+        ],
+        macro: [
+          { text: "<strong>Macro Tracking 101:</strong><br><br>Your daily targets should be based on your goals:<br><br>• <strong>Protein</strong>: 1.6–2.2g per kg bodyweight (muscle building/retention)<br>• <strong>Fats</strong>: 0.7–1.2g per kg (hormonal health)<br>• <strong>Carbs</strong>: Fill remaining calories (performance fuel)<br><br>Hit protein first, then fats, then fill with carbs. Consistency > perfection.", macros: null },
+        ],
+        recovery: [
+          { text: "<strong>Recovery Protocol:</strong><br><br>1. <strong>Sleep</strong> — 7–9 hours, keep room cool (18–20°C) and dark<br>2. <strong>Hydration</strong> — Aim for 3–4L daily, more on training days<br>3. <strong>Active Recovery</strong> — 20 min walk or light yoga on rest days<br>4. <strong>Stretching</strong> — 10 min post-workout, focus on worked muscle groups<br>5. <strong>Nutrition</strong> — Protein within 2 hours post-training<br><br>Your body grows during rest, not during the workout.", macros: null },
+          { text: "Feeling sore? That's DOMS (Delayed Onset Muscle Soreness). Here's what helps:<br><br>• <strong>Foam rolling</strong> — 5 min on affected areas<br>• <strong>Cold shower</strong> — 2 min at end of shower<br>• <strong>Magnesium</strong> — 400mg before bed<br>• <strong>Light movement</strong> — Don't sit all day, walk or do mobility drills<br><br>Soreness isn't an indicator of a good workout — progressive overload is.", macros: null },
+        ],
+        general: [
+          { text: "Based on your current training data and goals, I'd recommend focusing on <strong>progressive overload</strong> this week. Try adding 2.5kg to your compound lifts or 1–2 extra reps per set.<br><br>Remember: recovery is where gains happen. Are you getting 7–9 hours of sleep?", macros: null },
+          { text: "Here's a tip for staying consistent: <strong>track your wins</strong>, not just your workouts.<br><br>Each day you show up is a data point proving you're building the habit. Your consistency rate this month is looking solid. Keep the momentum going.", macros: null },
+          { text: "I'm here to help with:<br><br>• <strong>Workout plans</strong> — custom routines for any goal<br>• <strong>Nutrition advice</strong> — meal suggestions, macro breakdowns<br>• <strong>Form guidance</strong> — cues and corrections<br>• <strong>Recovery protocols</strong> — sleep, stretching, mobility<br><br>What would you like to dive into?", macros: null },
+        ],
+      };
+
+      const KEYWORD_MAP = {
+        workout: ['workout','exercise','training','hiit','routine','session','lift','push','pull','leg','upper','lower','split','gym','chest','back','arm','shoulder'],
+        nutrition: ['meal','eat','food','dinner','lunch','breakfast','snack','recipe','cook','diet','calorie','shake','protein shake','nutrition','nutrient','salmon','chicken','rice'],
+        form: ['form','squat','deadlift','bench','technique','posture','fix','correct','cue'],
+        macro: ['macro','protein','carb','fat','track','counting','deficit','surplus','bulk','cut'],
+        recovery: ['recovery','recover','rest','sleep','sore','soreness','stretch','foam','mobility','injury','pain','tired','fatigue'],
+      };
+
+      function classifyMessage(text) {
+        const lower = text.toLowerCase();
+        const scores = {};
+        for (const [cat, words] of Object.entries(KEYWORD_MAP)) {
+          scores[cat] = words.filter(w => lower.includes(w)).length;
+        }
+        const best = Object.entries(scores).sort((a,b) => b[1] - a[1])[0];
+        return best[1] > 0 ? best[0] : 'general';
+      }
+
+      function pickRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+      // Track used responses per category to avoid repeats
+      const usedResponses = {};
+      function getResponse(category) {
+        const pool = RESPONSES[category] || RESPONSES.general;
+        if (!usedResponses[category]) usedResponses[category] = [];
+        const unused = pool.filter((_, i) => !usedResponses[category].includes(i));
+        if (unused.length === 0) { usedResponses[category] = []; return getResponse(category); }
+        const idx = pool.indexOf(pickRandom(unused));
+        usedResponses[category].push(idx);
+        return pool[idx];
+      }
+
+      const messagesEl = document.getElementById('messages');
+      const chatInput = document.getElementById('chat-input');
+
+      function scrollToBottom() {
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+
+      function addUserMessage(text) {
+        const div = document.createElement('div');
+        div.className = 'flex gap-4 max-w-2xl ml-auto flex-row-reverse';
+        div.innerHTML = `
+          <div class="w-8 h-8 rounded-lg bg-primary-container flex-shrink-0 flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-primary-container text-xl">person</span>
+          </div>
+          <div class="bg-surface-variant p-4 md:p-6 rounded-xl rounded-tr-none">
+            <p class="text-on-surface leading-relaxed">${escapeHtml(text)}</p>
+          </div>`;
+        messagesEl.appendChild(div);
+        scrollToBottom();
+      }
+
+      function addCoachMessage(response) {
+        const div = document.createElement('div');
+        div.className = 'flex gap-4 max-w-2xl';
+        let macroHtml = '';
+        if (response.macros) {
+          macroHtml = '<div class="mt-4 flex flex-wrap gap-3">';
+          for (const [key, val] of Object.entries(response.macros)) {
+            macroHtml += `<div class="bg-surface-container-low px-4 py-2 rounded-lg">
+              <span class="font-label text-[10px] text-on-surface-variant block uppercase">${escapeHtml(key)}</span>
+              <span class="font-headline font-bold text-primary text-sm">${escapeHtml(val)}</span>
+            </div>`;
+          }
+          macroHtml += '</div>';
+        }
+        div.innerHTML = `
+          <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary-container text-xl">smart_toy</span>
+          </div>
+          <div class="bg-surface-container p-4 md:p-6 rounded-xl rounded-tl-none border-l-4 border-primary-container">
+            <p class="text-on-surface leading-relaxed">${response.text}</p>
+            ${macroHtml}
+          </div>`;
+        messagesEl.appendChild(div);
+        scrollToBottom();
+      }
+
+      function addTypingIndicator() {
+        const div = document.createElement('div');
+        div.id = 'typing-indicator';
+        div.className = 'flex gap-4 max-w-2xl';
+        div.innerHTML = `
+          <div class="w-8 h-8 rounded-lg bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary-container text-xl">smart_toy</span>
+          </div>
+          <div class="bg-surface-container p-4 md:p-6 rounded-xl rounded-tl-none flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-primary-dim animate-bounce" style="animation-delay:0ms"></span>
+            <span class="w-2 h-2 rounded-full bg-primary-dim animate-bounce" style="animation-delay:150ms"></span>
+            <span class="w-2 h-2 rounded-full bg-primary-dim animate-bounce" style="animation-delay:300ms"></span>
+          </div>`;
+        messagesEl.appendChild(div);
+        scrollToBottom();
+      }
+
+      function removeTypingIndicator() {
+        const el = document.getElementById('typing-indicator');
+        if (el) el.remove();
+      }
+
+      function escapeHtml(text) {
+        const d = document.createElement('div');
+        d.textContent = text;
+        return d.innerHTML;
+      }
+
+      let isSending = false;
+      function sendMessage(text) {
+        if (isSending) return;
+        const msg = text.trim();
+        if (!msg) return;
+        isSending = true;
+        addUserMessage(msg);
+        chatInput.value = '';
+        chatInput.focus();
+        addTypingIndicator();
+        // Simulate AI thinking delay (800-1500ms)
+        const delay = 800 + Math.random() * 700;
+        setTimeout(() => {
+          removeTypingIndicator();
+          const category = classifyMessage(msg);
+          const response = getResponse(category);
+          addCoachMessage(response);
+          isSending = false;
+        }, delay);
+      }
+
+      function sendFromInput() {
+        sendMessage(chatInput.value);
       }
     </script>
   </body>
