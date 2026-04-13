@@ -240,21 +240,21 @@
         <div class="p-4 md:p-8 pb-4 flex items-center justify-between">
           <div class="flex items-center gap-4">
             <div
-              class="w-12 h-12 bg-primary-container flex items-center justify-center rounded-xl shadow-[0_0_20px_rgba(202,253,0,0.3)]"
+              class="w-10 h-10 md:w-12 md:h-12 bg-primary-container flex items-center justify-center rounded-xl shadow-[0_0_20px_rgba(202,253,0,0.3)]"
             >
               <span
-                class="material-symbols-outlined text-on-primary-container text-3xl"
+                class="material-symbols-outlined text-on-primary-container text-2xl md:text-3xl"
                 data-icon="psychology"
                 style="font-variation-settings: &quot;FILL&quot; 1"
                 >psychology</span
               >
             </div>
             <div>
-              <h1 class="font-headline text-2xl font-bold text-on-surface">
+              <h1 class="font-headline text-lg md:text-2xl font-bold text-on-surface">
                 KINETIC <span class="text-primary-dim">AI</span>
               </h1>
               <p
-                class="font-label text-xs text-on-surface-variant flex items-center gap-2"
+                class="font-label text-[10px] md:text-xs text-on-surface-variant flex items-center gap-2"
               >
                 <span
                   class="w-2 h-2 rounded-full bg-primary-dim animate-pulse"
@@ -263,6 +263,11 @@
               </p>
             </div>
           </div>
+          <!-- Toggle context panel on mobile -->
+          <button onclick="toggleContextPanel()" class="lg:hidden flex items-center gap-1 bg-surface-container-highest px-3 py-2 rounded-lg text-primary-dim hover:bg-surface-bright transition-colors">
+            <span class="material-symbols-outlined text-lg">analytics</span>
+            <span class="font-label text-[10px] uppercase tracking-wider hidden sm:inline">Stats</span>
+          </button>
         </div>
         <!-- Messages Area -->
         <div class="flex-1 overflow-y-auto px-4 md:px-8 space-y-6 md:space-y-8 py-6">
@@ -398,8 +403,13 @@
       </section>
       <!-- Context Panel (Sidebar) -->
       <aside
-        class="hidden lg:flex w-80 bg-surface-container-low border-l border-outline-variant/10 p-8 flex-col gap-8 overflow-y-auto"
+        id="context-panel"
+        class="fixed lg:relative right-0 top-0 h-full w-[85vw] sm:w-80 z-50 lg:z-auto bg-surface-container-low border-l border-outline-variant/10 p-6 md:p-8 flex-col gap-8 overflow-y-auto hidden lg:flex transition-transform duration-300"
       >
+        <!-- Close button (mobile only) -->
+        <button onclick="toggleContextPanel()" class="lg:hidden self-end mb-2 text-on-surface-variant hover:text-white">
+          <span class="material-symbols-outlined">close</span>
+        </button>
         <!-- Daily Macros -->
         <div>
           <h3
@@ -558,6 +568,8 @@
     </main>
     <!-- Mobile sidebar overlay -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden" onclick="toggleSidebar()"></div>
+    <!-- Context panel overlay -->
+    <div id="context-overlay" class="fixed inset-0 bg-black/60 z-40 hidden lg:hidden" onclick="toggleContextPanel()"></div>
     <script>
       function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
@@ -570,6 +582,21 @@
         } else {
           sidebar.classList.remove('hidden');
           sidebar.classList.add('flex');
+          overlay.classList.remove('hidden');
+        }
+      }
+
+      function toggleContextPanel() {
+        const panel = document.getElementById('context-panel');
+        const overlay = document.getElementById('context-overlay');
+        const isOpen = panel.classList.contains('flex') && !panel.classList.contains('hidden');
+        if (isOpen) {
+          panel.classList.add('hidden');
+          panel.classList.remove('flex');
+          overlay.classList.add('hidden');
+        } else {
+          panel.classList.remove('hidden');
+          panel.classList.add('flex');
           overlay.classList.remove('hidden');
         }
       }
