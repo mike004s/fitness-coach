@@ -109,6 +109,9 @@
         background: #262626;
         border-radius: 10px;
       }
+      /* Fix mobile scroll */
+      html, body { height: 100%; overflow: hidden; }
+      #messages { -webkit-overflow-scrolling: touch; }
     </style>
   </head>
   <body
@@ -233,9 +236,9 @@
       </div>
     </aside>
     <!-- Main Canvas -->
-    <main class="md:ml-64 pt-16 md:pt-20 h-screen flex flex-col md:flex-row overflow-hidden">
+    <main class="md:ml-64 pt-16 md:pt-20 h-[100dvh] flex flex-col md:flex-row overflow-hidden">
       <!-- Chat Interface Section -->
-      <section class="flex-1 flex flex-col bg-surface relative">
+      <section class="flex-1 flex flex-col bg-surface relative min-h-0">
         <!-- Chat Header -->
         <div class="p-4 md:p-8 pb-4 flex items-center justify-between">
           <div class="flex items-center gap-4">
